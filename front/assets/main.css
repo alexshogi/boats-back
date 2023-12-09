@@ -1,0 +1,424 @@
+@import url("../static/fonts/inter/inter.css");
+
+@font-face {
+  font-family: 'Evolventa';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../static/fonts/evolventa/Evolventa-Regular.woff") format("woff"),
+       url("../static/fonts/evolventa/Evolventa-Regular.ttf") format("ttf"),
+       url("../static/fonts/evolventa/Evolventa-Regular.otf") format("otf");
+}
+
+@font-face {
+  font-family: 'Evolventa';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../static/fonts/evolventa/Evolventa-Bold.woff") format("woff"),
+       url("../static/fonts/evolventa/Evolventa-Bold.ttf") format("ttf"),
+       url("../static/fonts/evolventa/Evolventa-Bold.otf") format("otf");
+}
+
+@font-face {
+  font-family: 'Evolventa';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("../static/fonts/evolventa/Evolventa-Oblique.woff") format("woff"),
+       url("../static/fonts/evolventa/Evolventa-Oblique.ttf") format("ttf"),
+       url("../static/fonts/evolventa/Evolventa-Oblique.otf") format("otf");
+}
+
+@font-face {
+  font-family: 'Evolventa';
+  font-style: italic;
+  font-weight: 600;
+  font-display: swap;
+  src: url("../static/fonts/evolventa/Evolventa-BoldOblique.woff") format("woff"),
+       url("../static/fonts/evolventa/Evolventa-BoldOblique.ttf") format("ttf"),
+       url("../static/fonts/evolventa/Evolventa-BoldOblique.otf") format("otf");
+}
+
+@media (min-width: 960px) {
+  div.container {
+    max-width: 900px;
+  }
+}
+@media (min-width: 1264px) {
+  div.container {
+    max-width: 1110px;
+  }
+}
+@media (min-width: 1700px) {
+  div.container {
+    max-width: 1150px;
+    padding: 0;
+  }
+}
+
+.v-application {
+  font-family: 'Evolventa' !important;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 18px;
+  color: #272727;
+}
+
+.v-application .v-badge {
+  width: fit-content;
+}
+
+.v-application .v-badge span.v-badge__badge {
+  background-color: transparent !important;
+}
+
+.v-application button.btn.btn-primary,
+.v-application button.btn.btn-secondary,
+.v-application button.btn.btn-transparent {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  padding: 0 32px;
+  color: #f0f0f0;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.v-application button.btn.btn-primary .icon,
+.v-application button.btn.btn-secondary .icon,
+.v-application button.btn.btn-transparent .icon {
+  color: #f0f0f0;
+  margin-left: 20px;
+}
+
+.v-application button.btn.btn-secondary {
+  background-color: #484b52 !important;
+}
+
+.v-application button.btn.btn-transparent,
+.v-application button.btn.btn-transparent .icon {
+  background-color: transparent !important;
+  color: #272727 !important;
+  font-size: 18px;
+  line-height: 24px;
+  padding: 4px 8px;
+  text-decoration: none;
+  font-weight: 400;
+}
+
+.v-application button.btn.btn-outline {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  padding: 0 32px;
+  background-color: transparent;
+  border: 1px solid #272727;
+  color: #272727;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.v-application button.btn.btn-naked {
+  height: 44px;
+  display: flex;
+  align-items: center;
+  border-radius: 15px;
+  padding: 0 32px;
+  background-color: transparent;
+  border: none;
+  color: #272727;
+  font-size: 16px;
+  line-height: 16px;
+  letter-spacing: normal;
+  text-transform: none;
+}
+
+.v-application button.btn.medium {
+  height: 32px;
+  border-radius: 5px;
+  padding: 0 12px;
+  font-size: 16px;
+  line-height: 19px;
+  font-weight: 700;
+}
+
+.v-application button.btn.small {
+  height: 24px;
+  border-radius: 5px;
+  padding: 0 12px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 400;
+}
+
+.v-application h2 {
+  font-size: 28px;
+  line-height: 32px;
+  font-weight: 600;
+  color: #272727;
+}
+
+.v-application a {
+  color: #272727;
+}
+
+.slider span.swiper-pagination-bullet {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  border: 1.5px solid #e6e6e6;
+  background-color: transparent;
+  transition: background-color 0.18s;
+}
+
+.slider span.swiper-pagination-bullet-active {
+  background-color: #e6e6e6;
+}
+
+.slate-view {
+  width: 100%;
+}
+
+.slate-view .slate-heading {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.slate-view .slate-layout {
+  display: flex;
+  margin-bottom: 24px;
+}
+
+.slate-view .slate-layout .slate-layout-elem {
+  flex: 1;
+}
+
+.slate-view .slate-layout .slate-layout-elem .slate-p {
+  font-size: 18px;
+  line-height: 22px;
+  font-weight: 400;
+}
+
+div.common-page {
+  padding: 0;
+  padding-top: 120px;
+}
+
+div.common-page h2 {
+  font-size: 28px;
+  line-height: 38px;
+  font-weight: 700;
+}
+
+.page-banner {
+  border-radius: 30px;
+  border: 1px solid rgba(230, 230, 230, 1);
+  padding-left: 50px;
+  padding-right: 20px;
+  box-sizing: border-box;
+  margin-bottom: 120px;
+  background-image: radial-gradient(circle at 75% 50%, rgba(130, 151, 172, 0.3) 0%, rgba(0, 0, 0, 0) 45%, rgba(0, 0, 0, 0) 100%);
+}
+
+.page-banner .banner-info {
+  margin-top: 57px;
+  margin-bottom: 50px;
+}
+
+.page-banner .banner-info h2 {
+  margin-bottom: 50px;
+}
+
+.page-banner .banner-info p,
+.page-banner .banner-more p {
+  font-size: 18px;
+  line-height: 24px;
+  font-weight: 400;
+  margin: 0;
+}
+
+.page-banner .banner-info p {
+  margin-bottom: 24px;
+}
+
+.page-banner .banner-more {
+  max-width: 445px;
+  border: 1px solid rgba(230, 230, 230, 1);
+  box-sizing: border-box;
+  border-radius: 15px;
+  padding: 14px 22px;
+  margin-bottom: 50px;
+}
+
+.page-banner .banner-image {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-banner .banner-image img {
+  max-height: 100%;
+  max-width: 100%;
+}
+
+.page-banner {
+  display: grid;
+  grid-template-columns: 60% 1fr;
+  grid-template-rows: 316px 128px;
+  grid-column-gap: 10px;
+  grid-row-gap: 0px;
+}
+  
+.page-banner .banner-info {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.page-banner .banner-more {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.page-banner .banner-image {
+  grid-area: 1 / 2 / 3 / 3;
+}
+
+ol.custom-list {
+  list-style: none;
+}
+
+ol.custom-list li {
+  position: relative;
+  padding-left: 70px;
+  margin-bottom: 40px;
+}
+
+ol.custom-list li span.number {
+  font-family: Evolventa;
+  font-size: 104px;
+  font-weight: 700;
+  line-height: 100%;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(230, 230, 230, 0.47);
+  position: absolute;
+  left: 0;
+  user-select: none;
+}
+
+ol.custom-list li h4 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+ol.custom-list li p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+  margin-bottom: 0;
+}
+
+.page-info-block {
+  max-width: fit-content;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: center;
+  border-radius: 15px;
+  border: 1px solid #e6e6e6;
+  padding: 12px 56px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@media (max-width: 800px) {
+  div.common-page {
+    padding: 0;
+    padding-top: 40px;
+  }
+  
+  div.common-page h2 {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 600;
+  }
+
+  .page-banner {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 225px 225px 125px;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+    padding: 30px 20px;
+  }
+    
+  .page-banner .banner-info {
+    grid-area: 1 / 1 / 2 / 2;
+    margin: 0 !important;
+  }
+  
+  .page-banner .banner-more {
+    grid-area: 3 / 1 / 4 / 2;
+  }
+  
+  .page-banner .banner-image {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  .page-banner .banner-info h2 {
+    margin-bottom: 10px;
+    font-size: 15px !important;
+    font-weight: 700;
+    line-height: 20px;
+  }
+  
+  .page-banner .banner-info p,
+  .page-banner .banner-more p {
+    font-size: 14px;
+    line-height: 18px;
+    font-weight: 400;
+    margin: 0;
+  }
+  
+  .page-banner .banner-info p {
+    margin-bottom: 18px;
+  }
+  
+  .page-banner .banner-more {
+    max-width: 445px;
+    border: 1px solid rgba(230, 230, 230, 1);
+    box-sizing: border-box;
+    border-radius: 15px;
+    padding: 14px 22px;
+    margin-bottom: 10px;
+    height: fit-content;
+  }
+  
+  .page-banner .banner-image {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .page-banner .banner-image img {
+    max-height: 100%;
+    max-width: 100%;
+  }
+}
