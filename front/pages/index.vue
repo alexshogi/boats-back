@@ -28,13 +28,21 @@
       </NuxtLink>
     </section> -->
 
-    <!-- <section class="popular">
+    <section class="popular">
+      <h2>Специальные предложения</h2>
+      <SliderGoods
+        v-if="popularGoods?.length"
+        :products="popularGoods"
+      />
+    </section>
+
+    <section class="popular">
       <h2>Популярные товары</h2>
       <SliderGoods
         v-if="popularGoods?.length"
         :products="popularGoods"
       />
-    </section> -->
+    </section>
 
     <!-- <section class="accessories">
       <h2>Аксессуары</h2>
@@ -81,11 +89,110 @@ export default {
       goods: [],
       accessories: [],
       categories: [],
+      mockGoods: [
+        {
+          id: 'fdf8d989f9dferef00df',
+          link: '',
+          image: {
+            image: {
+              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
+            },
+          },
+          title: 'Алюминиевая лодка Тактика 430 DC',
+          price: 19990,
+          oldPrice: 23990,
+          bonus: 199,
+          vendorCode: 'sds222',
+          rating: 4,
+          ratings: 27,
+        },
+        {
+          id: 'fdf8d989f9dferef00d1',
+          link: '',
+          image: {
+            image: {
+              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
+            },
+          },
+          title: 'Алюминиевая лодка Тактика 430 DC',
+          price: 19990,
+          bonus: 199,
+          vendorCode: 'sds223',
+          rating: 5,
+          ratings: 22,
+        },
+        {
+          id: 'fdf8d989f9dferef00d2',
+          link: '',
+          image: {
+            image: {
+              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
+            },
+          },
+          title: 'Алюминиевая лодка Тактика 430 DC',
+          price: 19990,
+          oldPrice: 26990,
+          bonus: 199,
+          vendorCode: 'sds224',
+          rating: 5,
+          ratings: 7,
+        },
+        {
+          id: 'fdf8d989f9dferef00d3',
+          link: '',
+          image: {
+            image: {
+              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
+            },
+          },
+          title: 'Алюминиевая лодка Тактика 430 DC',
+          price: 19990,
+          bonus: 199,
+          vendorCode: 'sds225',
+          rating: 5,
+          ratings: 44,
+        },
+        {
+          id: 'fdf8d989f9dferef00d4',
+          link: '',
+          image: {
+            image: {
+              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
+            },
+          },
+          title: 'Алюминиевая лодка Тактика 430 DC',
+          price: 19990,
+          oldPrice: 21490,
+          bonus: 199,
+          vendorCode: 'sds226',
+          rating: 5,
+          ratings: 27,
+        },
+        {
+          id: 'fdf8d989f9dferef00d5',
+          link: '',
+          image: {
+            image: {
+              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
+            },
+          },
+          title: 'Алюминиевая лодка Тактика 430 DC',
+          price: 19990,
+          bonus: 199,
+          vendorCode: 'sds227',
+          rating: 5,
+          ratings: 3,
+        },
+      ]
     }
   },
   computed: {
     popularGoods () {
-      return this.goods;
+      if (this.goods.length) {
+        return this.goods;
+      }
+      
+      return this.mockGoods;
     },
     popularAccessories () {
       return this.accessories;

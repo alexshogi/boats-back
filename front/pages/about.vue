@@ -11,7 +11,7 @@
         </p>
       </div>
       <div class="banner-image">
-        <img src="../static/images/about.png" alt="About">
+        <!-- <img src="../static/images/about.png" alt="About"> -->
       </div>
     </section>
 

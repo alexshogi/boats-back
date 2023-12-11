@@ -16,7 +16,7 @@
         <p>Выполняем гарантийные обязательства в&nbsp;течение 45&nbsp;дней с&nbsp;момента обращения</p>
       </div>
       <div class="banner-image">
-        <img src="../static/images/guarantee.png" alt="Guarantee">
+        <!-- <img src="../static/images/guarantee.png" alt="Guarantee"> -->
       </div>
     </section>
 

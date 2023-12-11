@@ -1,6 +1,6 @@
 <template>
   <div class="product-card">
-    <v-btn
+    <!-- <v-btn
       class="btn-fav"
       @click.stop.prevent="addToFavorites"
     >
@@ -9,31 +9,51 @@
         size="17"
         :class="{ 'active': isProductInFavorites }"
       />
-    </v-btn>
+    </v-btn> -->
     <div class="product-image">
       <div class="image" :style="`background-image: url(${product.image?.image?.url})`"></div>
     </div>
     <div class="product-info">
-      <h4>{{ product.parent || product.title }}</h4>
-      <div class="product-info-rest">
-        <span class="product-price">{{ product.price?.toLocaleString() }} ₽</span>
-        <p v-if="product.bonus" class="product-bonus">+ {{ product.bonus?.toLocaleString() }} на счет</p>
-        <p v-else class="product-bonus">+ {{ bonus.toLocaleString() }} на счет</p>
-        <v-btn
-          v-if="!isProductInCart"
-          class="btn btn-outline small"
-          depressed
-          @click.stop.prevent="addToCart"
-        >
-          В корзину
-        </v-btn>
-        <p
-          v-if="isProductInCart"
-          class="in-cart"
-        >
-          В корзине
-        </p>
+      <h4>{{ product.title }}</h4>
+      <p class="product-vendor-code">{{ product.vendorCode }}</p>
+      <div class="product-actions">
+        <v-rating
+          :value="product.rating"
+          background-color="#484848"
+          color="#ffb800"
+          readonly
+        />
+        <span class="ratings-amount">{{ product.ratings }}</span>
       </div>
+      <div class="product-info-rest">
+        <span class="product-old-price" v-if="product.oldPrice">{{ product.oldPrice.toLocaleString() }} ₽</span>
+        <span class="product-price">{{ product.price?.toLocaleString() }} ₽</span>
+        <!-- <p v-if="product.bonus" class="product-bonus">+ {{ product.bonus?.toLocaleString() }} на счет</p>
+        <p v-else class="product-bonus">+ {{ bonus.toLocaleString() }} на счет</p> -->
+      </div>
+      <v-btn
+        v-if="!isProductInCart"
+        color="primary"
+        class="btn medium btn-primary"
+        depressed
+        @click.stop.prevent="addToCart"
+      >
+        В корзину
+      </v-btn>
+      <p
+        v-if="isProductInCart"
+        class="in-cart"
+      >
+        В корзине
+      </p>
+      <v-btn
+        v-if="!isProductInCart"
+        class="btn medium btn-outline"
+        depressed
+        @click.stop.prevent="addToCart"
+      >
+        Подробнее
+      </v-btn>
     </div>
   </div>
 </template>
@@ -188,12 +208,12 @@ export default {
   position: relative;
   border-radius: 15px;
   border: 1px solid #e6e6e6;
-  background-color: transparent;
+  background-color: #f8f9fa;
   box-shadow: 0 1px 3px 0 rgba(230, 230, 230, 0.7);
   transition: background-color 0.24s;
   cursor: pointer;
   user-select: none;
-  padding-bottom: 40px;
+  padding-bottom: 24px;
 }
 .v-application .product-card button.btn-fav {
   position: absolute;
@@ -215,33 +235,43 @@ export default {
   color: rgb(228, 59, 59);
 }
 .product-card .product-image {
-  padding: 20px 8px 5px 8px;
+  padding: 22px;
   margin-bottom: 0;
   display: flex;
   justify-content: center;
-  min-height: 240px;
+  min-height: 180px;
 }
 .product-card .product-image .image {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  max-height: 200px;
-  max-width: 160px;
-  height: 200px;
+  height: 100%;
   width: 100%;
+  min-height: 180px;
+}
+.product-card .product-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .product-card .product-info {
-  text-align: center;
-  padding: 0 8px;
+  text-align: left;
+  padding: 0 20px;
 }
 .product-card .product-info h4 {
-  font-size: 13px;
-  line-height: 15px;
+  margin-bottom: 5px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 21px;
+  text-align: left;
+}
+.product-card .product-info .product-vendor-code {
+  font-size: 10px;
   font-weight: 400;
-  margin-bottom: 15px;
-  min-height: 45px;
-  max-height: 45px;
-  overflow-y: hidden;
+  line-height: 13px;
+  text-align: left;
+  color: #b2b2b2;
+  margin-bottom: 10px;
 }
 .product-card .product-info .product-info-rest {
   display: flex;
@@ -249,11 +279,19 @@ export default {
   justify-content: space-between;
   flex: 1;
 }
+.product-card .product-info .product-old-price {
+  display: inline-block;
+  font-size: 16px;
+  line-height: 22px;
+  font-weight: 400;
+  margin-bottom: 4px;
+  text-decoration: line-through;
+}
 .product-card .product-info .product-price {
   display: inline-block;
   font-size: 18px;
-  line-height: 20px;
-  font-weight: 600;
+  line-height: 24px;
+  font-weight: 700;
   margin-bottom: 8px;
 }
 .product-card .product-info p {
@@ -262,15 +300,20 @@ export default {
   margin-bottom: 20px;
 }
 .product-card .product-info .btn {
-  margin: 0 auto;
+  margin: 0;
+  width: calc(100% - 24px);
+  margin-bottom: 15px;
+}
+.product-card .product-info .btn:last-of-type {
+  margin-bottom: 0;
 }
 .product-card .product-info .in-cart {
   margin-bottom: 0;
   line-height: 26px;
 }
-.product-card:hover {
+/* .product-card:hover {
   background-color: #e6e6e6;
-}
+} */
 .product-card:hover .icon svg {
   color: #111111;
 }
@@ -286,13 +329,19 @@ export default {
 .product-card:hover .product-info .product-price {
   color: #111111;
 }
-.product-card:hover .product-info p {
-  color: #111111;
+.v-rating {
+  display: inline-block;
 }
-.product-card:hover .product-info .btn {
+.v-rating .v-icon {
+  padding: 0;
+}
+/* .product-card:hover .product-info p {
+  color: #111111;
+} */
+/* .product-card:hover .product-info .btn {
   color: #111111;
   border-color: #111111;
-}
+} */
 
 @media (max-width: 800px) {
   .product-card .product-image {

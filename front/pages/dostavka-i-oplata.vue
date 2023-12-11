@@ -18,7 +18,7 @@
         <p>Стоимость доставки для заказов до 3 тысяч рублей рассчитывается индивидуально.</p>
       </div>
       <div class="banner-image">
-        <img src="../static/images/delivery.png" alt="Delivery">
+        <!-- <img src="../static/images/delivery.png" alt="Delivery"> -->
       </div>
     </section>
 

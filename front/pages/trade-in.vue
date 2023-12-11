@@ -12,7 +12,7 @@
         <p>Время услуги: 5-10 минут</p>
       </div>
       <div class="banner-image">
-        <img src="../static/images/trade-in.png" alt="trade-in">
+        <!-- <img src="../static/images/trade-in.png" alt="trade-in"> -->
       </div>
     </section>
 

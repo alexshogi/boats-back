@@ -24,7 +24,7 @@
         </p>
       </div>
       <div class="banner-image">
-        <img src="../static/images/credit.png" alt="Credit">
+        <!-- <img src="../static/images/credit.png" alt="Credit"> -->
       </div>
     </section>
 
