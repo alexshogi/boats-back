@@ -17,13 +17,19 @@
       <h4>{{ product.title }}</h4>
       <p class="product-vendor-code">{{ product.vendorCode }}</p>
       <div class="product-actions">
-        <v-rating
-          :value="product.rating"
-          background-color="#484848"
-          color="#ffb800"
-          readonly
-        />
-        <span class="ratings-amount">{{ product.ratings }}</span>
+        <div class="d-flex">
+          <v-rating
+            :value="product.rating"
+            background-color="#484848"
+            color="#ffb800"
+            readonly
+            class="product-rating"
+          />
+          <span class="ratings-amount">{{ product.ratings }}</span>
+        </div>
+        <div class="btns-group">
+          
+        </div>
       </div>
       <div class="product-info-rest">
         <span class="product-old-price" v-if="product.oldPrice">{{ product.oldPrice.toLocaleString() }} ₽</span>
@@ -254,6 +260,19 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.product-card .product-rating {
+  display: flex;
+  align-items: center;
+}
+.product-card .product-rating .v-icon {
+  font-size: 16px;
+}
+.product-card .ratings-amount {
+  margin-top: 4px;
+  margin-left: 8px;
+  font-size: 13px;
+  padding-bottom: 1px;
+}
 .product-card .product-info {
   text-align: left;
   padding: 0 20px;
@@ -276,13 +295,17 @@ export default {
 .product-card .product-info .product-info-rest {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-end;
   flex: 1;
+  height: 50px;
+  min-height: 50px;
+  max-height: 50px;
+  margin-bottom: 8px;
 }
 .product-card .product-info .product-old-price {
   display: inline-block;
   font-size: 16px;
-  line-height: 22px;
+  line-height: 16px;
   font-weight: 400;
   margin-bottom: 4px;
   text-decoration: line-through;
@@ -290,9 +313,9 @@ export default {
 .product-card .product-info .product-price {
   display: inline-block;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 18px;
   font-weight: 700;
-  margin-bottom: 8px;
+  margin: 0;
 }
 .product-card .product-info p {
   font-size: 14px;

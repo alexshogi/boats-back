@@ -422,3 +422,12 @@ ol.custom-list li p {
     max-width: 100%;
   }
 }
+
+.banner {
+  height: 634px;
+  border-radius: 50px;
+}
+  
+.banner-blue {
+  background-color: #032E42;
+}

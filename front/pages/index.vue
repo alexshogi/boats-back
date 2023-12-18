@@ -36,6 +36,10 @@
       />
     </section>
 
+    <section class="banner banner-blue">
+      
+    </section>
+
     <section class="popular">
       <h2>Популярные товары</h2>
       <SliderGoods

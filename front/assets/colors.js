@@ -7,7 +7,7 @@ exports.default = void 0;
 
 const main = Object.freeze({
   white: '#e6e6e6',
-  orange: '#f95d04',
+  orange: '#FF343F',
 });
 
 const _default = Object.freeze({

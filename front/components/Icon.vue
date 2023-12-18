@@ -46,6 +46,13 @@
         </clipPath>
       </defs>
     </svg>
+
+    <svg v-if="icon === 'compare'" :height="`${size}`" :width="`${size}`" viewBox="0 0 23 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M1 6L7.60542 12.1336C7.81845 12.3314 7.81845 12.6686 7.60542 12.8664L1 19" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M22 19L16.3131 12.8391C16.1363 12.6476 16.1363 12.3524 16.3131 12.1609L22 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M12 1L12 23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+    </svg>
+
   </span>
 </template>
 

@@ -327,7 +327,7 @@
             class="icon-text-link"
           >
             <Icon
-              icon="heart"
+              icon="compare"
               size="22"
             />
             <span class="icon-text">Сравнить</span>
@@ -504,7 +504,7 @@
               class="icon-text-link"
             >
               <Icon
-                icon="heart"
+                icon="compare"
                 size="22"
               />
               <span class="icon-text">Сравнить</span>
@@ -1205,7 +1205,7 @@ div.divider-vertical {
 }
 
 .v-list-item:hover {
-  color: #f95d04 !important;
+  color: #FF343F !important;
 }
 </style>
 
