@@ -48,6 +48,90 @@
       />
     </section>
 
+    <section class="categories">
+      <article class="category">
+        <div class="category-image">
+          <img src="/images/categories/motors.png" height="228" alt="Моторы">
+        </div>
+        <div>
+          <div class="category-title">Моторы для лодок</div>
+          <div class="category-caption">Сделайте вашу лодку еще быстрее</div>
+          <NuxtLink
+            to="/catalog"
+            class="text-decoration-none"
+          >
+            <v-btn
+              class="btn medium btn-secondary"
+              depressed
+            >
+              Подробнее
+            </v-btn>
+          </NuxtLink>
+        </div>
+      </article>
+      <article class="category">
+        <div class="category-image">
+          <img src="/images/categories/trailers.png" height="228" alt="Прицепы">
+        </div>
+        <div>
+          <div class="category-title">Прицепы</div>
+          <div class="category-caption">Транспортируйте судно с комфортом</div>
+          <NuxtLink
+            to="/catalog"
+            class="text-decoration-none"
+          >
+            <v-btn
+              class="btn medium btn-secondary"
+              depressed
+            >
+              Подробнее
+            </v-btn>
+          </NuxtLink>
+        </div>
+      </article>
+      <article class="category">
+        <div class="category-image">
+          <img src="/images/categories/accessories.png" height="210" alt="Аксессуары">
+        </div>
+        <div>
+          <div class="category-title">Дополнительные аксессуары</div>
+          <div class="category-caption">Тенты, жилеты и другое</div>
+          <NuxtLink
+            to="/catalog"
+            class="text-decoration-none"
+          >
+            <v-btn
+              class="btn medium btn-secondary"
+              depressed
+            >
+              Подробнее
+            </v-btn>
+          </NuxtLink>
+        </div>
+      </article>
+      <article class="category category-dark">
+        <div class="category-image align-right">
+          <img src="/images/categories/boats.png" height="252" alt="Лодки">
+        </div>
+        <div>
+          <div class="category-title">Каталог лодок и катеров</div>
+          <div class="category-caption">Моторные, весельные, каютные</div>
+          <NuxtLink
+            to="/catalog"
+            class="text-decoration-none"
+          >
+            <v-btn
+              color="primary"
+              class="btn medium btn-primary"
+              depressed
+            >
+              Подробнее
+            </v-btn>
+          </NuxtLink>
+        </div>
+      </article>
+    </section>
+
     <!-- <section class="accessories">
       <h2>Аксессуары</h2>
       <SliderAccessories

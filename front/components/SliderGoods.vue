@@ -17,12 +17,13 @@
           </NuxtLink>
         </div>
       </div>
+      <div class="swiper-pagination"></div>
     </div>
   </div>
 </template>
   
 <script>
-import { Swiper, Autoplay } from 'swiper';
+import { Swiper, Autoplay, Pagination } from 'swiper';
 import 'swiper/swiper-bundle.min.css';
 import ProductCard from '@/components/goods/ProductCard.vue';
 import Icon from '@/components/Icon.vue';
@@ -54,7 +55,7 @@ export default {
     new Swiper('.swiper-goods', {
       direction: 'horizontal',
       loop: true,
-      modules: [Autoplay],
+      modules: [Autoplay, Pagination],
       autoplay: {
         delay: 60000,
       },

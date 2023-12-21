@@ -28,7 +28,23 @@
           <span class="ratings-amount">{{ product.ratings }}</span>
         </div>
         <div class="btns-group">
-          
+          <v-btn
+            depressed
+          >
+            <Icon
+              icon="heart"
+              size="10"
+            />
+          </v-btn>
+          <div class="divider"></div>
+          <v-btn
+            depressed
+          >
+            <Icon
+              icon="compare"
+              size="10"
+            />
+          </v-btn>
         </div>
       </div>
       <div class="product-info-rest">

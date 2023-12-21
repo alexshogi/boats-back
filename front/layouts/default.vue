@@ -8,27 +8,6 @@
       :style="systemBarStyle"
     >
       <v-container class="d-flex justify-space-between align-center">
-        <nav>
-          <NuxtLink
-            to="/dostavka-i-oplata"
-            class="header-nav-link"
-          >
-            Доставка и оплата
-          </NuxtLink>
-          <NuxtLink
-            to="/garantiya"
-            class="header-nav-link"
-          >
-            Гарантия
-          </NuxtLink>
-          <NuxtLink
-            to="/kontakty"
-            class="header-nav-link"
-          >
-            Контакты
-          </NuxtLink>
-        </nav>
-
         <NuxtLink
           to="/"
           class="text-decoration-none"
@@ -119,6 +98,27 @@
             </v-list>
           </div>
         </v-menu>
+
+        <nav>
+          <NuxtLink
+            to="/dostavka-i-oplata"
+            class="header-nav-link"
+          >
+            Доставка и оплата
+          </NuxtLink>
+          <NuxtLink
+            to="/garantiya"
+            class="header-nav-link"
+          >
+            Гарантия
+          </NuxtLink>
+          <NuxtLink
+            to="/kontakty"
+            class="header-nav-link"
+          >
+            Контакты
+          </NuxtLink>
+        </nav>
 
         <div class="header-top-actions">
           <a href="tel:+79527995333" class="text-decoration-none">
@@ -555,6 +555,10 @@
         <Nuxt />
       </v-container>
     </v-main>
+
+    <v-footer class="site-footer">
+      
+    </v-footer>
 
     <!-- <v-footer class="site-footer">
       <v-container class="d-flex justify-space-between">
