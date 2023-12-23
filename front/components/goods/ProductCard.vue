@@ -233,7 +233,7 @@ export default {
   background-color: #f8f9fa;
   box-shadow: 0 1px 3px 0 rgba(230, 230, 230, 0.7);
   transition: background-color 0.24s;
-  cursor: pointer;
+  /* cursor: pointer; */
   user-select: none;
   padding-bottom: 24px;
 }

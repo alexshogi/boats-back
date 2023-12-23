@@ -66,6 +66,10 @@
   color: #272727;
 }
 
+div.v-application a {
+  color: #272727;
+}
+
 .v-application .v-badge {
   width: fit-content;
 }
@@ -82,12 +86,22 @@
   align-items: center;
   border-radius: 15px;
   padding: 0 32px;
-  color: #f0f0f0;
+  color: #ffffff;
   font-size: 16px;
   font-weight: 700;
   line-height: 16px;
   letter-spacing: normal;
   text-transform: none;
+}
+
+.v-application button.btn.btn-primary {
+  background-color: #FF343F;
+}
+
+.v-application button.btn.btn-primary.v-btn--disabled {
+  background-color: #FF343F !important;
+  color: #ffffff !important;
+  opacity: 0.5;
 }
 
 .v-application button.btn.btn-primary .icon,
@@ -305,12 +319,12 @@ ol.custom-list li {
 
 ol.custom-list li span.number {
   font-family: Evolventa;
-  font-size: 104px;
+  font-size: 70px;
   font-weight: 700;
-  line-height: 100%;
+  line-height: 93px;
   letter-spacing: 0em;
   text-align: left;
-  color: rgba(230, 230, 230, 0.47);
+  color: #ffffff;
   position: absolute;
   left: 0;
   user-select: none;
@@ -423,13 +437,59 @@ ol.custom-list li p {
   }
 }
 
-.banner {
-  height: 634px;
+section.block {
   border-radius: 50px;
+  margin-bottom: 110px;
+  padding: 60px 40px;
 }
   
-.banner-blue {
+section.block-blue {
   background-color: #032e42;
+}
+
+section.block h2 {
+  margin-bottom: 10px;
+}
+
+section.block p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 26px;
+  margin-bottom: 13px;
+}
+
+section.block ol {
+  padding: 0;
+  margin-top: 34px;
+  margin-bottom: 34px;
+}
+
+section.block ol.custom-list li {
+  padding-left: 0;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+}
+
+section.block ol.custom-list li span.number {
+  font-family: Evolventa;
+  font-size: 70px;
+  font-weight: 700;
+  line-height: 70px;
+  color: #ffffff;
+  position: unset;
+  margin-right: 10px;
+}
+
+section.block ol.custom-list li p {
+  padding-bottom: 12px;
+}
+
+section.block-blue,
+section.block-blue h2,
+section.block-blue p,
+section.block-blue a {
+  color: #ffffff;
 }
 
 .btns-group {
@@ -460,6 +520,7 @@ ol.custom-list li p {
   gap: 20px;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 475px);
+  margin-bottom: 110px;
 }
 
 .categories .category {
@@ -507,4 +568,102 @@ ol.custom-list li p {
 .categories .category-dark .category-title,
 .categories .category-dark .category-caption {
   color: #ffffff
+}
+
+.block .form {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 300px;
+  overflow: hidden;
+}
+
+.block .form form {
+  max-width: 100%;
+}
+
+.block .form div:first-of-type h2 {
+  margin-bottom: 20px;
+}
+
+.block .form div:first-of-type p {
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 37px;
+}
+
+.block .form .form-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.block .form .form-row-label {
+  min-width: 150px;
+  width: 150px;
+  max-width: 150px;
+}
+
+.block .form .form-row-content {
+  flex: 1;
+}
+
+.block .form .v-input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #272727;
+  color: #272727;
+}
+
+.block-blue .form .v-input {
+  border: 1px solid #ffffff;
+}
+
+.block-blue .form .v-input input {
+  color: #ffffff;
+}
+
+.block-blue .form .v-input input::placeholder {
+  color: #e7e7e7;
+}
+
+.block .form .v-input .v-input__slot {
+  padding: 0 24px;
+}
+
+.block .form .v-input .v-input__slot fieldset {
+  border: none;
+}
+
+.block .form .v-input .v-input__slot:before,
+.block .form .v-input .v-input__slot:after {
+  display: none;
+}
+
+.block .form .v-input input {
+  max-height: 44px;
+  height: 44px;
+  border: none;
+}
+
+.block .form .additional-text {
+  font-size: 11px !important;
+  font-weight: 400;
+  line-height: 15px !important;
+  text-align: center;
+}
+
+.block .form .btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-add-mobile {
+  display: none;
 }

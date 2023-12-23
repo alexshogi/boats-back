@@ -28,7 +28,7 @@
       </NuxtLink>
     </section> -->
 
-    <section class="popular">
+    <section class="special">
       <h2>Специальные предложения</h2>
       <SliderGoods
         v-if="popularGoods?.length"
@@ -36,8 +36,58 @@
       />
     </section>
 
-    <section class="banner banner-blue">
-      
+    <section class="block block-blue d-flex">
+      <div class="left">
+        <div>
+          <h2>«ТАКТИКА» —</h2>
+          <p>
+            лодки, созданные с заботой о своих покупателях.
+            <br>
+            «Тактика» — это качество и сервис по доступной цене.
+          </p>
+        </div>
+        <ol class="custom-list">
+          <li>
+            <span class="number">11</span>
+            <p>
+              лет на рынке
+              <br>
+              судостроения
+            </p>
+          </li>
+        </ol>
+        <div>
+          <h2>Миссия «Тактики» —</h2>
+          <p>
+            возродить судостроительный завод города Сосновка и вернуть почетное
+            звание «Город судостроителей» с градообразующим предприятием с 1000 сотрудников.
+          </p>
+          <p style="margin-bottom: 30px;">
+            Это поможет развивать сферы культуры и образования города, обеспечивая его новыми
+            рабочими местами и возможностями для взрослых и детей.
+          </p>
+          <NuxtLink to="" style="font-size: 13px;">Читать больше о развитии города</NuxtLink>
+        </div>
+      </div>
+      <div class="right">
+        <div style="padding-left: 150px;">
+          <p class="font-weight-bold">
+            Балабанов Александр
+            <br>
+            Владимирович
+          </p>
+          <p class="font-italic text-subtitle-1 font-weight-light" style="font-size: 15px;">
+            Генеральный директор
+            <br>
+            ООО «Тимакс»
+          </p>
+        </div>
+        <div>
+          <span class="font-italic text-subtitle-1 font-weight-light" style="font-size: 15px;">Обладатель благодарности</span>
+          <p class="font-weight-bold my-0">«Производственный бизнес 2023»</p>
+          <span class="font-italic text-subtitle-1 font-weight-light" style="font-size: 15px;">по версии Главы Вятскополянского района</span>
+        </div>
+      </div>
     </section>
 
     <section class="popular">
@@ -75,7 +125,7 @@
         </div>
         <div>
           <div class="category-title">Прицепы</div>
-          <div class="category-caption">Транспортируйте судно с комфортом</div>
+          <div class="category-caption">Транспортируйте судно c комфортом</div>
           <NuxtLink
             to="/catalog"
             class="text-decoration-none"
@@ -132,6 +182,82 @@
       </article>
     </section>
 
+    <section class="block block-blue block-request">
+      <div>
+        <h2>
+          Ваш заказ будет вести
+          <br>
+          персональный менеджер
+        </h2>
+        <p>
+          Это поможет вам получить быстрые ответы на вопросы,
+          <br>
+          оформить заказ или внести в него изменения
+        </p>
+      </div>
+      <div class="form">
+        <v-form
+          ref="form"
+          v-model="valid"
+          lazy-validation
+        >
+          <div class="form-row">
+            <div class="form-row-content">
+              <v-text-field
+                v-model="phone"
+                dense
+                v-mask="'+7 (###) ###-##-##'"
+                placeholder="+7 (999) 999-00-00"
+                outlined
+                hide-details
+                :rules="[rules.required]"
+              />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-row-content">
+              <v-text-field
+                v-model="name"
+                dense
+                placeholder="Ваше имя"
+                outlined
+                hide-details
+                :rules="[rules.required]"
+              />
+            </div>
+          </div>
+
+          <div class="form-add-desktop">
+            <div class="form-row">
+              <div class="form-row-content">
+                <v-btn
+                  color="primary"
+                  class="btn btn-primary"
+                  depressed
+                  :disabled="!phone || !name"
+                  @click="validate"
+                >
+                  Отправить
+                </v-btn>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-row-content">
+                <p class="additional-text">
+                  Нажимая кнопку, вы&nbsp;соглашаетесь
+                  <br>
+                  с&nbsp;
+                  <NuxtLink to="/privacy-policy">Политикой конфиденциальности</NuxtLink>
+                </p>
+              </div>
+            </div>
+          </div>
+        </v-form>
+      </div>
+    </section>
+
     <!-- <section class="accessories">
       <h2>Аксессуары</h2>
       <SliderAccessories
@@ -174,6 +300,12 @@ export default {
   data () {
     return {
       loading: false,
+      name: '',
+      phone: '',
+      rules: {
+        required: value => !!value || 'Обязательное поле',
+      },
+      valid: true,
       goods: [],
       accessories: [],
       categories: [],
@@ -190,7 +322,7 @@ export default {
           price: 19990,
           oldPrice: 23990,
           bonus: 199,
-          vendorCode: 'sds222',
+          vendorCode: 'B-228',
           rating: 4,
           ratings: 27,
         },
@@ -205,7 +337,7 @@ export default {
           title: 'Алюминиевая лодка Тактика 430 DC',
           price: 19990,
           bonus: 199,
-          vendorCode: 'sds223',
+          vendorCode: 'B-228',
           rating: 5,
           ratings: 22,
         },
@@ -221,7 +353,7 @@ export default {
           price: 19990,
           oldPrice: 26990,
           bonus: 199,
-          vendorCode: 'sds224',
+          vendorCode: 'B-228',
           rating: 5,
           ratings: 7,
         },
@@ -236,7 +368,7 @@ export default {
           title: 'Алюминиевая лодка Тактика 430 DC',
           price: 19990,
           bonus: 199,
-          vendorCode: 'sds225',
+          vendorCode: 'B-228',
           rating: 5,
           ratings: 44,
         },
@@ -252,7 +384,7 @@ export default {
           price: 19990,
           oldPrice: 21490,
           bonus: 199,
-          vendorCode: 'sds226',
+          vendorCode: 'B-228',
           rating: 5,
           ratings: 27,
         },
@@ -267,7 +399,7 @@ export default {
           title: 'Алюминиевая лодка Тактика 430 DC',
           price: 19990,
           bonus: 199,
-          vendorCode: 'sds227',
+          vendorCode: 'B-228',
           rating: 5,
           ratings: 3,
         },
@@ -282,17 +414,11 @@ export default {
       
       return this.mockGoods;
     },
-    popularAccessories () {
-      return this.accessories;
-    },
-    popularCats () {
-      return this.categories;
-    }
   },
-  mounted () {
-    this.getCats();
-    this.getGoods();
-    this.getAccessories();
+  async mounted () {
+    await this.getCats();
+    await this.getGoods();
+    await this.getSpecial();
   },
   methods: {
     openGoodsItem (item) {
@@ -333,12 +459,12 @@ export default {
       });
 
       if (response?.data?.data?.products) {
-        this.goods = [...response.data.data.products.filter(p => p.isActive)];
+        this.goods = [...response.data.data.products];
       }
 
       this.loading = false;
     },
-    async getAccessories () {
+    async getSpecial () {
       this.loading = true;
 
       const graphqlQuery = {
@@ -376,7 +502,7 @@ export default {
       });
 
       if (response?.data?.data?.products) {
-        this.accessories = [...response.data.data.products.filter(p => p.isActive)];
+        this.special = [...response.data.data.products];
       }
 
       this.loading = false;
@@ -416,7 +542,48 @@ export default {
       }
 
       this.loading = false;
-    }
+    },
+    validate () {
+      this.$refs.form.validate();
+
+      if (this.valid) {
+        this.sendForm();
+      }
+    },
+    async sendForm() {
+      const graphqlQuery = {
+        query: `
+          mutation {
+            createTradeRequest (
+              data: {
+                name: "${this.name}",
+                phone: "${this.phone}",
+              }
+            ) {
+              id
+            }
+          }
+        `
+      };
+
+      const response = await this.$axios({
+        method: 'POST',
+        data: JSON.stringify(graphqlQuery)
+      });
+
+      if (response?.data?.data?.createTradeRequest?.id) {
+        this.bottomSheet = true;
+
+        this.name = '';
+        this.phone = '';
+
+        this.$refs.form.resetValidation();
+
+        setTimeout(() => {
+          this.bottomSheet = false;
+        }, 5000);
+      }
+    },
   }
 }
 </script>
@@ -424,6 +591,7 @@ export default {
 <style lang="scss" scoped>
 .index-page {
   padding: 0;
+  padding-top: 90px;
 }
 
 .hero {
@@ -479,10 +647,10 @@ export default {
   }
 }
 
+.special,
 .popular {
-  padding-top: 120px;
   text-align: center;
-  margin-bottom: 120px;
+  margin-bottom: 110px;
 
   h2 {
     margin-bottom: 70px;
@@ -505,6 +673,26 @@ export default {
     margin: 0 auto;
     margin-top: 60px;
   }
+}
+
+.block .left {
+  flex: 3;
+  padding-right: 100px;
+}
+
+.block .right {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.block-request {
+  display: flex;
+  gap: 120px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 90px;
 }
 
 @media (max-width: 800px) {

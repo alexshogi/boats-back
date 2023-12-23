@@ -7,14 +7,14 @@
           :key="product.id"
           class="swiper-slide"
         >
-          <NuxtLink
+          <!-- <NuxtLink
             :to="`/catalog/${product.link}`"
             class="text-decoration-none"
-          >
+          > -->
             <ProductCard
               :product="product"
             />
-          </NuxtLink>
+          <!-- </NuxtLink> -->
         </div>
       </div>
       <div class="swiper-pagination"></div>
