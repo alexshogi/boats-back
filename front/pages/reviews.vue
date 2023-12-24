@@ -1,12 +1,13 @@
 <template>
   <v-container class="common-page reviews-page">
-    <h1>Что о&nbsp;нас говорят клиенты</h1>
+    <Gear />
+    <!-- <h1>Что о&nbsp;нас говорят клиенты</h1>
 
     <section class="reviews-page-reviews">
       <article class="review">
         <header>
           <span class="name">Алексей Плотников</span>
-          <!-- <img src="../static/images/logo_google.png" height="28" alt="google"> -->
+          <img src="../static/images/logo_google.png" height="28" alt="google">
         </header>
         <main>
           Хочется сказать ребятам спасибо большое! Очень быстро, качественно и&nbsp;совсем не&nbsp;ломят
@@ -25,7 +26,7 @@
       <article class="review">
         <header>
           <span class="name">Максим Пашков</span>
-          <!-- <img src="../static/images/logo_yamap.png" height="28" alt="google"> -->
+          <img src="../static/images/logo_yamap.png" height="28" alt="google">
         </header>
         <main>
           Прекрасный сервис. Постоянно обращаюсь именно к&nbsp;ним, ребята делают очень
@@ -45,7 +46,7 @@
       <article class="review">
         <header>
           <span class="name">Алекс К</span>
-          <!-- <img src="../static/images/logo_2gis.png" height="28" alt="2gis"> -->
+          <img src="../static/images/logo_2gis.png" height="28" alt="2gis">
         </header>
         <main>
           Отличный сервис. Вежливый и&nbsp;отзывчивый персонал. Приятные цены. Рекомендую!
@@ -107,18 +108,20 @@
       </div>
     </section>
 
-    <Contacts />
+    <Contacts /> -->
   </v-container>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import Contacts from '@/components/Contacts.vue';
+import Gear from '@/components/Gear.vue';
 
 export default {
   name: 'ReviewsPage',
   components: {
     Contacts,
+    Gear,
   },
   data () {
     return {

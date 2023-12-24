@@ -1,6 +1,7 @@
 <template>
   <v-container class="common-page delivery-page">
-    <section class="page-banner">
+    <Gear />
+    <!-- <section class="page-banner">
       <div class="banner-info">
         <h2>Доставка и оплата</h2>
         <p>
@@ -18,7 +19,7 @@
         <p>Стоимость доставки для заказов до 3 тысяч рублей рассчитывается индивидуально.</p>
       </div>
       <div class="banner-image">
-        <!-- <img src="../static/images/delivery.png" alt="Delivery"> -->
+        <img src="../static/images/delivery.png" alt="Delivery">
       </div>
     </section>
 
@@ -62,17 +63,19 @@
       </span>
     </section>
 
-    <Contacts />
+    <Contacts /> -->
   </v-container>
 </template>
 
 <script>
 import Contacts from '@/components/Contacts.vue';
+import Gear from '@/components/Gear.vue';
 
 export default {
   name: 'DeliveryPage',
   components: {
     Contacts,
+    Gear,
   },
 }
 </script>

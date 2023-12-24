@@ -28,7 +28,7 @@
     </header>
     
     <div class="catalog-page-container">
-      <div class="filters">
+      <!-- <div class="filters">
         <h4>Цена</h4>
         <div class="filter-block">
           <v-text-field
@@ -132,7 +132,7 @@
             />
           </v-radio-group>
         </div>
-      </div>
+      </div> -->
 
       <div class="catalog-page-content">
         <section v-if="loading" class="catalog-container">

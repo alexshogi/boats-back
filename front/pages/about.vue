@@ -1,6 +1,7 @@
 <template>
   <v-container class="common-page about-page">
-    <section class="page-banner">
+    <Gear />
+    <!-- <section class="page-banner">
       <div class="banner-info">
         <h2>iPlatinum Store&nbsp;&mdash; магазин техники и&nbsp;аксессуаров в&nbsp;Калининграде</h2>
         <p>
@@ -11,7 +12,7 @@
         </p>
       </div>
       <div class="banner-image">
-        <!-- <img src="../static/images/about.png" alt="About"> -->
+        <img src="../static/images/about.png" alt="About">
       </div>
     </section>
 
@@ -40,17 +41,19 @@
       </h2>
     </section>
 
-    <Contacts />
+    <Contacts /> -->
   </v-container>
 </template>
 
 <script>
 import Contacts from '@/components/Contacts.vue';
+import Gear from '@/components/Gear.vue';
 
 export default {
   name: 'AboutPage',
   components: {
     Contacts,
+    Gear,
   },
 }
 </script>

@@ -557,7 +557,153 @@
     </v-main>
 
     <v-footer class="site-footer">
-      
+      <v-container class="d-flex flex-column">
+        <div class="site-footer-content">
+          <div class="col pa-0 w-300">
+            <NuxtLink
+              to="/"
+              class="text-decoration-none"
+            >
+              <div class="site-logo mb-8">
+                <img
+                  src="../static/images/logo-white.png"
+                  alt="Тактика"
+                  width="201"
+                  height="43"
+                >
+              </div>
+            </NuxtLink>
+            <p class="text-small-thick mb-5">Чтобы быть в курсе всех акций и скидок, подпишитесь на нашу рассылку</p>
+            <div class="form">
+              <v-form
+                ref="form"
+              >
+                <div class="form-row align-start" style="gap: 5px;">
+                  <div class="form-row-content">
+                    <v-text-field
+                      v-model="email"
+                      dense
+                      placeholder="Email"
+                      outlined
+                      hide-details
+                    />
+                  </div>
+                  <div>
+                    <div class="form-row-content">
+                      <v-btn
+                        color="primary"
+                        class="btn small btn-primary btn-header-phone px-7 mb-1"
+                        depressed
+                        :disabled="!email"
+                      >
+                        Подписаться
+                      </v-btn>
+                      <p class="additional-text">
+                        Нажимая кнопку, вы&nbsp;соглашаетесь
+                        <br>
+                        с&nbsp;
+                        <NuxtLink to="/privacy-policy">Политикой конфиденциальности</NuxtLink>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </v-form>
+            </div>
+            <div class="socials-block">
+              <h4 class="font-weight-regular">Тактика в соцсетях</h4>
+              <div class="socials-icons">
+                <a href="https://t.me/+79229491631" target="_blank" class="text-decoration-none d-flex align-center">
+                  <img src="../static/images/telegram.png" alt="tg" height="26">
+                </a>
+                <a href="" target="_blank" class="text-decoration-none d-flex align-center">
+                  <img src="../static/images/vk.png" alt="vk" height="27">
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="col pa-0 d-flex flex-column justify-space-between">
+            <div>
+              <h4>Категории</h4>
+              <nav class="mb-10">
+                <NuxtLink to="/catalog">Моторные лодки</NuxtLink>
+                <NuxtLink to="/catalog">Весельные лодки </NuxtLink>
+                <NuxtLink to="/catalog">Алюминиевые катера</NuxtLink>
+                <NuxtLink to="/catalog">Каютные катера</NuxtLink>
+                <NuxtLink to="/catalog">Моторы для лодок</NuxtLink>
+                <NuxtLink to="/catalog">Прицепы </NuxtLink>
+                <NuxtLink to="/catalog">Аксессуары</NuxtLink>
+              </nav>
+            </div>
+            <NuxtLink to="/catalog" class="text-decoration-none">
+              <v-btn
+                color="primary"
+                class="btn small btn-primary btn-header-phone px-12"
+                depressed
+              >
+                Каталог
+              </v-btn>
+            </NuxtLink>
+          </div>
+          <div class="col pa-0">
+            <h4>Информация</h4>
+            <nav>
+              <NuxtLink to="/dostavka-i-oplata">Доставка и оплата</NuxtLink>
+              <NuxtLink to="/about">О производстве</NuxtLink>
+              <NuxtLink to="/kontakty">Контакты</NuxtLink>
+              <NuxtLink to="/garantiya">Гарантия</NuxtLink>
+            </nav>
+          </div>
+          <div class="col pa-0 d-flex flex-column justify-space-between">
+            <div class="socials-block">
+              <h4>Чат с менеджером</h4>
+              <div class="socials-icons">
+                <a href="https://t.me/+79229491631" target="_blank" class="text-decoration-none d-flex align-center">
+                  <img src="../static/images/telegram.png" alt="tg" height="26">
+                </a>
+                <a href="whatsapp://send?phone=79229491631" target="_blank" class="text-decoration-none d-flex align-center">
+                  <img src="/_nuxt/static/images/whatsapp.png" alt="wa" height="26">
+                </a>
+              </div>
+            </div>
+            <div>
+              <p style="font-size: 14px; margin-bottom: 10px;">Информационная линия</p>
+              <div>
+                <a href="mailto:info@tactic-boat.ru" class="mb-5">info@tactic-boat.ru</a>
+                <a href="tel:+79527995333" class="mb-5">+7 (911) 495-24-88</a>
+                <v-btn
+                  color="primary"
+                  class="btn small btn-primary btn-header-phone px-7"
+                  depressed
+                >
+                  Заказать звонок
+                </v-btn>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="site-footer-bottom">
+          <p>
+            Данный сайт носит исключительно информационный характер. Все представленные
+            <br>
+            предложения не являются офертой, определяемой статьей 437 ГК РФ. Для получения
+            <br>
+            подробной информации свяжитесь по телефону 8 (800) 222 48 68 (Звонок бесплатный)
+            <br>
+            или info@tactic-boat.ru.
+          </p>
+          <div class="d-flex flex-column" style="gap: 10px;">
+            <div class="d-flex" style="gap: 15px;">
+              <p>
+                <NuxtLink to="/privacy-policy">Политика конфиденциальности</NuxtLink>
+              </p>
+              <p>
+                <NuxtLink to="/">Сообщить об ошибке на сайте</NuxtLink>
+              </p>
+            </div>
+            <p>© 2023 ООО «Тимакс» ИНН 4307001065, ОГРН 1024300608958</p>
+          </div>
+        </div>
+      </v-container>
     </v-footer>
 
     <!-- <v-footer class="site-footer">
@@ -794,6 +940,7 @@ export default {
       drawer: false,
       activeCatCode: '',
       activeSubCatCode: '',
+      email: '',
     }
   },
   computed: {
@@ -1235,52 +1382,58 @@ div.divider-vertical {
   background-color: #3a3a3a !important;
 }
 .site-footer {
-  padding: 35px 0;
-  margin-top: 120px;
+  background-color: #032E42;
+  color: #ffffff;
 }
-.site-footer nav {
+.site-footer-content {
+  padding: 60px 40px;
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  gap: 100px;
+}.site-footer nav {
+  display: flex;
+  flex-direction: column;
 }
-.site-footer a.link-underline {
-  text-underline-offset: 2px;
-  margin-bottom: 10px;
+.site-footer h4 {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 19px;
+  text-align: left;
+  color: #ffffff;
+  margin-bottom: 15px;
 }
-.site-footer .site-logo {
-  align-items: flex-start;
-  padding-top: 2px;
-}
-.site-footer .socials {
-  margin-top: 48px;
-}
-.site-footer .socials a {
-  margin-right: 15px;
+.site-footer a {
+  color: #ffffff;
   text-decoration: none;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+  text-align: left;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: all 0.18s;
   display: inline-block;
 }
-.site-footer .socials a:last-of-type {
-  margin-right: 0;
+.site-footer nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 19px;
+  text-align: left;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition: all 0.18s;
 }
-.site-footer .socials a img {
-  height: 28px;
+.site-footer nav a:hover {
+  text-decoration-color: #FF343F;
 }
-.site-footer .socials .note {
-  font-size: 8px;
-  line-height: 8px;
-  margin-top: 5px;
-  margin-bottom: 0;
-}
-.site-footer .socials a.link-instagram {
-  position: relative;
-  margin-right: 25px;
-}
-.site-footer .socials a.link-instagram:after {
-  content: "*";
-  position: absolute;
-  top: 0;
-  right: -10px;
-  font-size: 18px;
+.site-footer .text-small-thick {
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  text-align: left;
 }
 .site-footer .container {
   justify-content: space-between;
@@ -1308,6 +1461,20 @@ div.divider-vertical {
   line-height: 24px;
   font-weight: 600;
   padding-top: 4px;
+}
+
+.site-footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px 40px;
+}
+
+.site-footer-bottom * {
+  font-size: 8px !important;
+  font-weight: 400 !important;
+  line-height: 11px !important;
+  text-align: left;
 }
 
 .btn-menu-mobile {

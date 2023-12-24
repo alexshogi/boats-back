@@ -1,6 +1,7 @@
 <template>
   <v-container class="common-page privacy-policy-page">
-    <h1>Политика в отношении обработки персональных данных</h1>
+    <Gear />
+    <!-- <h1>Политика в отношении обработки персональных данных</h1>
 
     <ol>
       <li>
@@ -169,9 +170,22 @@
           <li>Актуальная версия Политики в свободном доступе расположена в сети Интернет по адресу https://iplatinum.ru/privacy-policy/.</li>
         </ol>
       </li>
-    </ol>
+    </ol> -->
   </v-container>
 </template>
+
+<script>
+import Contacts from '@/components/Contacts.vue';
+import Gear from '@/components/Gear.vue';
+
+export default {
+  name: 'GuaranteePage',
+  components: {
+    Contacts,
+    Gear,
+  },
+}
+</script>
 
 <style>
 .privacy-policy-page h1 {

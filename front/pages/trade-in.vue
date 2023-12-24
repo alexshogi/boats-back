@@ -1,6 +1,7 @@
 <template>
   <v-container class="common-page trade-in-page">
-    <section class="page-banner">
+    <Gear />
+    <!-- <section class="page-banner">
       <div class="banner-info">
         <h2>Trade-In</h2>
         <p>
@@ -12,7 +13,7 @@
         <p>Время услуги: 5-10 минут</p>
       </div>
       <div class="banner-image">
-        <!-- <img src="../static/images/trade-in.png" alt="trade-in"> -->
+        <img src="../static/images/trade-in.png" alt="trade-in">
       </div>
     </section>
 
@@ -199,18 +200,20 @@
       </v-sheet>
     </v-bottom-sheet>
 
-    <Contacts />
+    <Contacts /> -->
   </v-container>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import Contacts from '@/components/Contacts.vue';
+import Gear from '@/components/Gear.vue';
 
 export default {
   name: 'TradeInPage',
   components: {
     Contacts,
+    Gear,
   },
   data () {
     return {

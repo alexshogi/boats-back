@@ -1,6 +1,7 @@
 <template>
   <v-container class="common-page guarantee-page">
-    <section class="page-banner">
+    <Gear />
+    <!-- <section class="page-banner">
       <div class="banner-info">
         <h2>iPlatinum Store предлагает лучшие гарантийные условия на&nbsp;технику:</h2>
         <ul>
@@ -16,7 +17,7 @@
         <p>Выполняем гарантийные обязательства в&nbsp;течение 45&nbsp;дней с&nbsp;момента обращения</p>
       </div>
       <div class="banner-image">
-        <!-- <img src="../static/images/guarantee.png" alt="Guarantee"> -->
+        <img src="../static/images/guarantee.png" alt="Guarantee">
       </div>
     </section>
 
@@ -64,17 +65,19 @@
       </a>
     </section>
 
-    <Contacts />
+    <Contacts /> -->
   </v-container>
 </template>
 
 <script>
 import Contacts from '@/components/Contacts.vue';
+import Gear from '@/components/Gear.vue';
 
 export default {
   name: 'GuaranteePage',
   components: {
     Contacts,
+    Gear,
   },
 }
 </script>
