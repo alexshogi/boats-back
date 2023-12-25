@@ -56,7 +56,7 @@
       <v-btn
         v-if="!isProductInCart"
         color="primary"
-        class="btn medium btn-primary"
+        class="btn medium btn-primary mb-3"
         depressed
         @click.stop.prevent="addToCart"
       >
@@ -68,14 +68,14 @@
       >
         В корзине
       </p>
-      <v-btn
-        v-if="!isProductInCart"
-        class="btn medium btn-outline"
-        depressed
-        @click.stop.prevent="addToCart"
-      >
-        Подробнее
-      </v-btn>
+      <NuxtLink :to="`/catalog/${product.link}`" class="text-decoration-none">
+        <v-btn
+          class="btn medium btn-outline"
+          depressed
+        >
+          Подробнее
+        </v-btn>
+      </NuxtLink>
     </div>
   </div>
 </template>

@@ -7,32 +7,11 @@
       <SliderMain />
     </section> -->
 
-    <!-- <section class="cats">
-      <NuxtLink
-        v-for="c in popularCats"
-        :key="c.id"
-        :to="`/catalog?category=${c.code}`"
-        style="text-decoration: none;"
-        v-if="c.code !== 'services'"
-      >
-        <v-card
-          class="cat-card"
-          flat
-        >
-          <div
-            class="cat-card-image"
-            :style="{ backgroundImage: `url(../images/categories/${c.code}.png)` }"
-          ></div>
-          <h4>{{ c.title }}</h4>
-        </v-card>
-      </NuxtLink>
-    </section> -->
-
     <section class="special">
       <h2>Специальные предложения</h2>
       <SliderGoods
-        v-if="popularGoods?.length"
-        :products="popularGoods"
+        v-if="specialGoods?.length"
+        :products="specialGoods"
       />
     </section>
 
@@ -285,7 +264,6 @@
 <script>
 import SliderMain from '@/components/SliderMain.vue';
 import SliderGoods from '@/components/SliderGoods.vue';
-import SliderAccessories from '@/components/SliderAccessories.vue';
 import Contacts from '@/components/Contacts.vue';
 
 export default {
@@ -294,7 +272,6 @@ export default {
   components: {
     SliderMain,
     SliderGoods,
-    SliderAccessories,
     Contacts,
   },
   data () {
@@ -306,140 +283,48 @@ export default {
         required: value => !!value || 'Обязательное поле',
       },
       valid: true,
-      goods: [],
-      accessories: [],
+      popularGoods: [],
+      specialGoods: [],
       categories: [],
-      mockGoods: [
-        {
-          id: 'fdf8d989f9dferef00df',
-          link: '',
-          image: {
-            image: {
-              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
-            },
-          },
-          title: 'Алюминиевая лодка Тактика 430 DC',
-          price: 19990,
-          oldPrice: 23990,
-          bonus: 199,
-          vendorCode: 'B-228',
-          rating: 4,
-          ratings: 27,
-        },
-        {
-          id: 'fdf8d989f9dferef00d1',
-          link: '',
-          image: {
-            image: {
-              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
-            },
-          },
-          title: 'Алюминиевая лодка Тактика 430 DC',
-          price: 19990,
-          bonus: 199,
-          vendorCode: 'B-228',
-          rating: 5,
-          ratings: 22,
-        },
-        {
-          id: 'fdf8d989f9dferef00d2',
-          link: '',
-          image: {
-            image: {
-              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
-            },
-          },
-          title: 'Алюминиевая лодка Тактика 430 DC',
-          price: 19990,
-          oldPrice: 26990,
-          bonus: 199,
-          vendorCode: 'B-228',
-          rating: 5,
-          ratings: 7,
-        },
-        {
-          id: 'fdf8d989f9dferef00d3',
-          link: '',
-          image: {
-            image: {
-              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
-            },
-          },
-          title: 'Алюминиевая лодка Тактика 430 DC',
-          price: 19990,
-          bonus: 199,
-          vendorCode: 'B-228',
-          rating: 5,
-          ratings: 44,
-        },
-        {
-          id: 'fdf8d989f9dferef00d4',
-          link: '',
-          image: {
-            image: {
-              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
-            },
-          },
-          title: 'Алюминиевая лодка Тактика 430 DC',
-          price: 19990,
-          oldPrice: 21490,
-          bonus: 199,
-          vendorCode: 'B-228',
-          rating: 5,
-          ratings: 27,
-        },
-        {
-          id: 'fdf8d989f9dferef00d5',
-          link: '',
-          image: {
-            image: {
-              url: 'https://lodki-lodki.ru/images/product_images/popup_images/2024_0.png',
-            },
-          },
-          title: 'Алюминиевая лодка Тактика 430 DC',
-          price: 19990,
-          bonus: 199,
-          vendorCode: 'B-228',
-          rating: 5,
-          ratings: 3,
-        },
-      ]
     }
-  },
-  computed: {
-    popularGoods () {
-      if (this.goods.length) {
-        return this.goods;
-      }
-      
-      return this.mockGoods;
-    },
   },
   async mounted () {
     await this.getCats();
-    await this.getGoods();
-    await this.getSpecial();
+    await this.getPopularGoods();
+    await this.getSpecialGoods();
   },
   methods: {
     openGoodsItem (item) {
       this.$router.push({ path: `catalog/${item}` });
     },
-    async getGoods () {
+    async getPopularGoods () {
       this.loading = true;
 
       const graphqlQuery = {
         query: `
           query {
             products(
-              take: 20,
+              take: 9,
+              where: {
+                category: { some: { code: { equals: "popular" } } }
+              }
             ) {
               id
-              link
               title
+              link
               price
               bonus
               isActive
               image {
+                image {
+                  filesize
+                  width
+                  height
+                  extension
+                  url
+                }
+              }
+              images {
                 image {
                   filesize
                   width
@@ -459,21 +344,21 @@ export default {
       });
 
       if (response?.data?.data?.products) {
-        this.goods = [...response.data.data.products];
+        this.popularGoods = [...response.data.data.products];
       }
 
       this.loading = false;
     },
-    async getSpecial () {
+    async getSpecialGoods () {
       this.loading = true;
 
       const graphqlQuery = {
         query: `
           query {
             products(
-              take: 20,
+              take: 9,
               where: {
-                category: { id: { equals: "04c73a7a-502b-406c-a337-b77508aefa85" } }
+                category: { some: { code: { equals: "special" } } }
               }
             ) {
               id
@@ -483,6 +368,15 @@ export default {
               bonus
               isActive
               image {
+                image {
+                  filesize
+                  width
+                  height
+                  extension
+                  url
+                }
+              }
+              images {
                 image {
                   filesize
                   width
@@ -502,7 +396,7 @@ export default {
       });
 
       if (response?.data?.data?.products) {
-        this.special = [...response.data.data.products];
+        this.specialGoods = [...response.data.data.products];
       }
 
       this.loading = false;

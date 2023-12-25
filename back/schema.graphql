@@ -294,8 +294,8 @@ type Product {
   vendorCode: String
   balance: Int
   isActive: Boolean
-  isPopular: Boolean
-  category: Category
+  category(where: CategoryWhereInput! = {}, orderBy: [CategoryOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: CategoryWhereUniqueInput): [Category!]
+  categoryCount(where: CategoryWhereInput! = {}): Int
   subCategory: SubCategory
   tags(where: TagWhereInput! = {}, orderBy: [TagOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: TagWhereUniqueInput): [Tag!]
   tagsCount(where: TagWhereInput! = {}): Int
@@ -305,24 +305,26 @@ type Product {
   material: String
   type: String
   handlingType: String
-  sideHeight: Int
-  transomHeight: Int
-  overallLength: Int
-  overallWidth: Int
-  weight: Int
-  loadCapacity: Int
+  sideHeight: Float
+  transomHeight: Float
+  overallLength: Float
+  overallWidth: Float
+  weight: Float
+  loadCapacity: Float
   permissibleMotorPower: String
-  deadriseAmidships: Int
-  deadriseTransom: Int
+  deadriseAmidships: Float
+  deadriseTransom: Float
   passengers: Int
-  beadThickness: Int
-  bottomThickness: Int
+  beadThickness: Float
+  bottomThickness: Float
   relatedProducts(where: ProductWhereInput! = {}, orderBy: [ProductOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductWhereUniqueInput): [Product!]
   relatedProductsCount(where: ProductWhereInput! = {}): Int
   extras(where: ProductWhereInput! = {}, orderBy: [ProductOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ProductWhereUniqueInput): [Product!]
   extrasCount(where: ProductWhereInput! = {}): Int
   services(where: ServiceWhereInput! = {}, orderBy: [ServiceOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: ServiceWhereUniqueInput): [Service!]
   servicesCount(where: ServiceWhereInput! = {}): Int
+  rating: Float
+  ratings: Int
   specifications: String
   properties: String
   seoTitle: String
@@ -355,8 +357,7 @@ input ProductWhereInput {
   vendorCode: StringFilter
   balance: IntNullableFilter
   isActive: BooleanFilter
-  isPopular: BooleanFilter
-  category: CategoryWhereInput
+  category: CategoryManyRelationFilter
   subCategory: SubCategoryWhereInput
   tags: TagManyRelationFilter
   colorName: StringFilter
@@ -365,21 +366,23 @@ input ProductWhereInput {
   material: StringFilter
   type: StringFilter
   handlingType: StringFilter
-  sideHeight: IntNullableFilter
-  transomHeight: IntNullableFilter
-  overallLength: IntNullableFilter
-  overallWidth: IntNullableFilter
-  weight: IntNullableFilter
-  loadCapacity: IntNullableFilter
+  sideHeight: FloatNullableFilter
+  transomHeight: FloatNullableFilter
+  overallLength: FloatNullableFilter
+  overallWidth: FloatNullableFilter
+  weight: FloatNullableFilter
+  loadCapacity: FloatNullableFilter
   permissibleMotorPower: StringFilter
-  deadriseAmidships: IntNullableFilter
-  deadriseTransom: IntNullableFilter
+  deadriseAmidships: FloatNullableFilter
+  deadriseTransom: FloatNullableFilter
   passengers: IntNullableFilter
-  beadThickness: IntNullableFilter
-  bottomThickness: IntNullableFilter
+  beadThickness: FloatNullableFilter
+  bottomThickness: FloatNullableFilter
   relatedProducts: ProductManyRelationFilter
   extras: ProductManyRelationFilter
   services: ServiceManyRelationFilter
+  rating: FloatNullableFilter
+  ratings: IntNullableFilter
   specifications: StringFilter
   properties: StringFilter
   seoTitle: StringFilter
@@ -413,10 +416,27 @@ input BooleanFilter {
   not: BooleanFilter
 }
 
+input CategoryManyRelationFilter {
+  every: CategoryWhereInput
+  some: CategoryWhereInput
+  none: CategoryWhereInput
+}
+
 input TagManyRelationFilter {
   every: TagWhereInput
   some: TagWhereInput
   none: TagWhereInput
+}
+
+input FloatNullableFilter {
+  equals: Float
+  in: [Float!]
+  notIn: [Float!]
+  lt: Float
+  lte: Float
+  gt: Float
+  gte: Float
+  not: FloatNullableFilter
 }
 
 input ProductManyRelationFilter {
@@ -442,7 +462,6 @@ input ProductOrderByInput {
   vendorCode: OrderDirection
   balance: OrderDirection
   isActive: OrderDirection
-  isPopular: OrderDirection
   colorName: OrderDirection
   colorCode: OrderDirection
   link: OrderDirection
@@ -461,6 +480,8 @@ input ProductOrderByInput {
   passengers: OrderDirection
   beadThickness: OrderDirection
   bottomThickness: OrderDirection
+  rating: OrderDirection
+  ratings: OrderDirection
   specifications: OrderDirection
   properties: OrderDirection
   seoTitle: OrderDirection
@@ -484,8 +505,7 @@ input ProductUpdateInput {
   vendorCode: String
   balance: Int
   isActive: Boolean
-  isPopular: Boolean
-  category: CategoryRelateToOneForUpdateInput
+  category: CategoryRelateToManyForUpdateInput
   subCategory: SubCategoryRelateToOneForUpdateInput
   tags: TagRelateToManyForUpdateInput
   colorName: String
@@ -494,21 +514,23 @@ input ProductUpdateInput {
   material: String
   type: String
   handlingType: String
-  sideHeight: Int
-  transomHeight: Int
-  overallLength: Int
-  overallWidth: Int
-  weight: Int
-  loadCapacity: Int
+  sideHeight: Float
+  transomHeight: Float
+  overallLength: Float
+  overallWidth: Float
+  weight: Float
+  loadCapacity: Float
   permissibleMotorPower: String
-  deadriseAmidships: Int
-  deadriseTransom: Int
+  deadriseAmidships: Float
+  deadriseTransom: Float
   passengers: Int
-  beadThickness: Int
-  bottomThickness: Int
+  beadThickness: Float
+  bottomThickness: Float
   relatedProducts: ProductRelateToManyForUpdateInput
   extras: ProductRelateToManyForUpdateInput
   services: ServiceRelateToManyForUpdateInput
+  rating: Float
+  ratings: Int
   specifications: String
   properties: String
   seoTitle: String
@@ -527,10 +549,11 @@ input ImageRelateToManyForUpdateInput {
   connect: [ImageWhereUniqueInput!]
 }
 
-input CategoryRelateToOneForUpdateInput {
-  create: CategoryCreateInput
-  connect: CategoryWhereUniqueInput
-  disconnect: Boolean
+input CategoryRelateToManyForUpdateInput {
+  disconnect: [CategoryWhereUniqueInput!]
+  set: [CategoryWhereUniqueInput!]
+  create: [CategoryCreateInput!]
+  connect: [CategoryWhereUniqueInput!]
 }
 
 input SubCategoryRelateToOneForUpdateInput {
@@ -577,8 +600,7 @@ input ProductCreateInput {
   vendorCode: String
   balance: Int
   isActive: Boolean
-  isPopular: Boolean
-  category: CategoryRelateToOneForCreateInput
+  category: CategoryRelateToManyForCreateInput
   subCategory: SubCategoryRelateToOneForCreateInput
   tags: TagRelateToManyForCreateInput
   colorName: String
@@ -587,21 +609,23 @@ input ProductCreateInput {
   material: String
   type: String
   handlingType: String
-  sideHeight: Int
-  transomHeight: Int
-  overallLength: Int
-  overallWidth: Int
-  weight: Int
-  loadCapacity: Int
+  sideHeight: Float
+  transomHeight: Float
+  overallLength: Float
+  overallWidth: Float
+  weight: Float
+  loadCapacity: Float
   permissibleMotorPower: String
-  deadriseAmidships: Int
-  deadriseTransom: Int
+  deadriseAmidships: Float
+  deadriseTransom: Float
   passengers: Int
-  beadThickness: Int
-  bottomThickness: Int
+  beadThickness: Float
+  bottomThickness: Float
   relatedProducts: ProductRelateToManyForCreateInput
   extras: ProductRelateToManyForCreateInput
   services: ServiceRelateToManyForCreateInput
+  rating: Float
+  ratings: Int
   specifications: String
   properties: String
   seoTitle: String
@@ -618,9 +642,9 @@ input ImageRelateToManyForCreateInput {
   connect: [ImageWhereUniqueInput!]
 }
 
-input CategoryRelateToOneForCreateInput {
-  create: CategoryCreateInput
-  connect: CategoryWhereUniqueInput
+input CategoryRelateToManyForCreateInput {
+  create: [CategoryCreateInput!]
+  connect: [CategoryWhereUniqueInput!]
 }
 
 input SubCategoryRelateToOneForCreateInput {
@@ -719,6 +743,12 @@ input ServiceUpdateInput {
   orders: Int
 }
 
+input CategoryRelateToOneForUpdateInput {
+  create: CategoryCreateInput
+  connect: CategoryWhereUniqueInput
+  disconnect: Boolean
+}
+
 input ServiceUpdateArgs {
   where: ServiceWhereUniqueInput!
   data: ServiceUpdateInput!
@@ -741,10 +771,16 @@ input ServiceCreateInput {
   orders: Int
 }
 
+input CategoryRelateToOneForCreateInput {
+  create: CategoryCreateInput
+  connect: CategoryWhereUniqueInput
+}
+
 type Category {
   id: ID!
   code: String
   title: String
+  caption: String
   image: Image
   children(where: SubCategoryWhereInput! = {}, orderBy: [SubCategoryOrderByInput!]! = [], take: Int, skip: Int! = 0, cursor: SubCategoryWhereUniqueInput): [SubCategory!]
   childrenCount(where: SubCategoryWhereInput! = {}): Int
@@ -767,6 +803,7 @@ input CategoryWhereInput {
   id: IDFilter
   code: StringFilter
   title: StringFilter
+  caption: StringFilter
   image: ImageWhereInput
   children: SubCategoryManyRelationFilter
   isActive: BooleanFilter
@@ -787,6 +824,7 @@ input CategoryOrderByInput {
   id: OrderDirection
   code: OrderDirection
   title: OrderDirection
+  caption: OrderDirection
   isActive: OrderDirection
   seoTitle: OrderDirection
   seoDescription: OrderDirection
@@ -798,6 +836,7 @@ input CategoryOrderByInput {
 input CategoryUpdateInput {
   code: String
   title: String
+  caption: String
   image: ImageRelateToOneForUpdateInput
   children: SubCategoryRelateToManyForUpdateInput
   isActive: Boolean
@@ -823,6 +862,7 @@ input CategoryUpdateArgs {
 input CategoryCreateInput {
   code: String
   title: String
+  caption: String
   image: ImageRelateToOneForCreateInput
   children: SubCategoryRelateToManyForCreateInput
   isActive: Boolean
@@ -842,6 +882,8 @@ type SubCategory {
   id: ID!
   code: String
   title: String
+  caption: String
+  image: Image
   parent: Category
   isActive: Boolean
   seoTitle: String
@@ -862,6 +904,8 @@ input SubCategoryWhereInput {
   id: IDFilter
   code: StringFilter
   title: StringFilter
+  caption: StringFilter
+  image: ImageWhereInput
   parent: CategoryWhereInput
   isActive: BooleanFilter
   seoTitle: StringFilter
@@ -875,6 +919,7 @@ input SubCategoryOrderByInput {
   id: OrderDirection
   code: OrderDirection
   title: OrderDirection
+  caption: OrderDirection
   isActive: OrderDirection
   seoTitle: OrderDirection
   seoDescription: OrderDirection
@@ -886,6 +931,8 @@ input SubCategoryOrderByInput {
 input SubCategoryUpdateInput {
   code: String
   title: String
+  caption: String
+  image: ImageRelateToOneForUpdateInput
   parent: CategoryRelateToOneForUpdateInput
   isActive: Boolean
   seoTitle: String
@@ -903,6 +950,8 @@ input SubCategoryUpdateArgs {
 input SubCategoryCreateInput {
   code: String
   title: String
+  caption: String
+  image: ImageRelateToOneForCreateInput
   parent: CategoryRelateToOneForCreateInput
   isActive: Boolean
   seoTitle: String

@@ -2,122 +2,116 @@
   <v-container class="common-page product-page">
     <section
       v-if="loading"
-      class="product-container"
     >
 
     </section>
     <section
       v-else
-      class="product-container"
     >
-      <div class="slider slider-product">
-        <div class="swiper swiper-product">
-          <div class="swiper-wrapper">
-            <div
-              v-for="image in images"
-              :key="image"
-              class="swiper-slide"
-            >
-              <img
-                :src="image"
-                :alt="product.title"
-                @click="openImage(image)"
+      <div>
+        <h1>{{ product.title }}</h1>
+        <p>Артикул: {{ product.vendorCode }}</p>
+      </div>
+
+      <div class="d-flex">
+        <div class="slider slider-product">
+          <div class="swiper swiper-product">
+            <div class="swiper-wrapper">
+              <div
+                v-for="image in images"
+                :key="image"
+                class="swiper-slide"
               >
+                <img
+                  :src="image"
+                  :alt="product.title"
+                  @click="openImage(image)"
+                >
+              </div>
             </div>
+          </div>
+
+          <div class="slider-button-prev">
+            <Icon
+              icon="chevron-left"
+              size="16"
+            />
+          </div>
+          <div class="slider-button-next">
+            <Icon
+              icon="chevron-right"
+              size="14"
+            />
           </div>
         </div>
 
-        <div class="slider-button-prev">
-          <Icon
-            icon="chevron-left"
-            size="16"
-          />
-        </div>
-        <div class="slider-button-next">
-          <Icon
-            icon="chevron-right"
-            size="16"
-          />
-        </div>
-      </div>
-
-      <div>
-        <div class="product-header-actions">
-          <v-btn
-            class="btn btn-naked small"
-            depressed
-            @click.stop.prevent="addToFavorites"
-          >
-            <Icon
-              icon="heart"
-              size="17"
-              :class="{ 'active': isProductInFavorites }"
-            />
-            {{ isProductInFavorites ? 'В&nbsp;избранном' : 'В&nbsp;избранное' }}
-          </v-btn>
-
-          <!-- <v-btn
-            class="btn btn-naked small"
-            depressed
-          >
-            <Icon
-              icon="wallet"
-              size="17"
-            />
-            Нашли дешевле?
-          </v-btn> -->
-        </div>
-        <div class="product-bonus">
-          <p v-if="product.bonus" class="bonus">+ {{ product.bonus?.toLocaleString() }} на счет</p>
-          <p v-else class="bonus">+ {{ bonus.toLocaleString() }} на счет</p>
-        </div>
-        <div class="product-title">
-          <h1>{{ product.title }}</h1>
-        </div>
-        <div class="product-vendor-code">
-          <span>Артикул: {{ product.vendorCode }}</span>
-        </div>
-        <div class="product-color-picker">
-          <span>Цвет:</span>
-          <NuxtLink
-            v-for="color in colors"
-            :key="color.id"
-            :to="`/catalog/${color.link}`"
-            class="text-decoration-none"
-          >
-            <div
-              class="color"
-              :class="{ active: color.active }"
-              :style="`background-color: ${colorsList[color.color]}`"
-            ></div>
-          </NuxtLink>
-        </div>
-        <div v-if="memoryAmounts?.length" class="product-memory-picker">
-          <span>Объем памяти:</span>
-          <NuxtLink
-            v-for="ma in memoryAmounts"
-            :key="ma.id"
-            :to="`/catalog/${ma.link}`"
-            class="text-decoration-none"
-          >
-            <div
-              class="memory"
-              :class="{ active: ma.active }"
+        <div>
+          <div class="product-header-actions">
+            <v-btn
+              class="btn btn-naked small px-1 mr-5"
+              depressed
+              @click.stop.prevent="addToFavorites"
             >
-              {{ ma.memoryText }}
-            </div>
-          </NuxtLink>
-        </div>
+              <Icon
+                icon="heart"
+                size="14"
+                :class="{ 'active': isProductInFavorites }"
+              />
+              <span style="padding-top: 2px;">{{ isProductInFavorites ? 'В&nbsp;избранном' : 'В&nbsp;избранное' }}</span>
+            </v-btn>
 
-        <!-- <div class="product-connection-picker"></div> -->
+            <v-btn
+              class="btn btn-naked small px-1 mr-5"
+              depressed
+            >
+              <Icon
+                icon="compare"
+                size="17"
+              />
+              <span style="padding-top: 2px;">Сравнить</span>
+            </v-btn>
 
-        <div class="product-price">
-          <span>{{ product.price?.toLocaleString() }} ₽</span>
+            <v-btn
+              v-if="product.bonus"
+              class="btn btn-naked small px-1"
+              depressed
+            >
+              <Icon
+                icon="coins"
+                size="17"
+              />
+              <span style="padding-top: 2px;">+{{ product.bonus?.toLocaleString() }}</span>
+            </v-btn>
+          </div>
+
+          <div class="d-flex">
+            <v-rating
+              :value="product.rating"
+              background-color="#484848"
+              color="#ffb800"
+              readonly
+              class="product-rating"
+            />
+            <span class="ratings-amount">{{ product.ratings }}</span>
+          </div>
+
+          <div class="product-price mb-4">
+            <span>{{ product.price?.toLocaleString() }} ₽</span>
+          </div>
+
+          <v-btn
+            class="btn btn-secondary px-15"
+            depressed
+            :disabled="isProductInCart"
+            @click.stop.prevent="addToCart"
+          >
+            {{ isProductInCart ? 'В корзине' : 'В корзину' }}
+          </v-btn>
         </div>
       </div>
     </section>
 
-    <section class="product-actions">
+    <!-- <section class="product-actions">
       <div class="actions-left">
         <v-btn
           class="btn btn-outline"
@@ -142,25 +136,18 @@
         >
           В корзине
         </p>
-        <v-btn
-          class="btn btn-outline"
-          depressed
-          @click="bottomForm = true"
-        >
-          Trade-In
-        </v-btn>
       </div>
-    </section>
+    </section> -->
 
-    <section class="related-products">
+    <!-- <section class="related-products">
       <h2 class="page-heading">С&nbsp;этим товаром покупают</h2>
       <SliderGoods
         v-if="relatedProductsToShow?.length"
         :products="relatedProductsToShow"
       />
-    </section>
+    </section> -->
 
-    <section class="services">
+    <!-- <section class="services">
       <h2 class="page-heading">Полезные услуги</h2>
       <div class="services-container">
         <template v-if="services?.length">
@@ -171,9 +158,9 @@
           />
         </template>
       </div>
-    </section>
+    </section> -->
 
-    <section
+    <!-- <section
       ref="info"
       class="product-info product-info-desktop"
     >
@@ -196,10 +183,6 @@
         <v-tab href="#guarantee">
           Гарантия
         </v-tab>
-
-        <!-- <v-tab href="#services">
-          Сервисы
-        </v-tab> -->
       </v-tabs>
 
       <v-tabs-items v-model="tab">
@@ -275,16 +258,10 @@
             <p>Выполняем гарантийные обязательства в течение 45 дней с момента обращения</p>
           </div>
         </v-tab-item>
-
-        <!-- <v-tab-item :key="5" value="services">
-          <div class="info-tab-container">
-            Сервисы
-          </div>
-        </v-tab-item> -->
       </v-tabs-items>
-    </section>
+    </section> -->
 
-    <section
+    <!-- <section
       ref="infoMobile"
       class="product-info product-info-mobile"
     >
@@ -373,20 +350,20 @@
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
-    </section>
+    </section> -->
 
     <v-dialog
       v-model="imageDialog"
       width="800"
     >
       <div
-        v-if="imageDialogImage.url"
+        v-if="imageDialogUrl"
         class="dialog-image"
-        :style="`background-image: url(${imageDialogImage.url})`"
+        :style="`background-image: url(${imageDialogUrl})`"
       />
     </v-dialog>
 
-    <v-bottom-sheet v-model="bottomSheet">
+    <!-- <v-bottom-sheet v-model="bottomSheet">
       <v-sheet
         class="text-center pa-6"
         height="220px"
@@ -395,9 +372,9 @@
           Заявка успешно отправлена
         </h2>
       </v-sheet>
-    </v-bottom-sheet>
+    </v-bottom-sheet> -->
 
-    <v-bottom-sheet v-model="bottomForm">
+    <!-- <v-bottom-sheet v-model="bottomForm">
       <v-sheet
         class="text-center pa-6"
       >
@@ -549,9 +526,9 @@
           </div>
         </v-form>
       </v-sheet>
-    </v-bottom-sheet>
+    </v-bottom-sheet> -->
 
-    <Contacts />
+    <!-- <Contacts /> -->
   </v-container>
 </template>
 
@@ -575,101 +552,15 @@ export default {
   },
   data () {
     return {
+      loading: true,
       panel: 0,
       bottomSheet: false,
-      bottomForm: false,
       images: [],
       imageDialog: false,
-      imageDialogImage: {},
-      loading: true,
+      imageDialogUrl: '',
       product: {},
       relatedProducts: [],
-      colors: [],
-      memoryAmounts: [],
-      lengths: [],
-      services: [],
-      accessories: [],
-      colorsList: {
-        'темная ночь': '#000033',
-        'золотистая охра': '#D4AF37',
-        'белый': '#FFFFFF',
-        'черный': '#111111',
-        'серый': '#808080',
-        'серебристый': '#e3e3e3',
-        'зеленый': '#00FF00',
-        'розовый': '#fbc2df',
-        'золотой': '#e9dca0',
-        'серый космос': '#808080',
-        'сияющая звезда': '#f7eec8',
-        'голубой': '#00BFFF',
-        'желтый': '#FFFF00',
-        'Синий/Медный': '#4169E1',
-        'Медный/Никель': '#B87333',
-        'фуксия/никель': '#FF00FF',
-        'Яркий никель/медь': '#FF7F00',
-        'Оранжевый топаз': '#FFA500',
-        'розовый/синий': '#FF69B4',
-        'черный, фиолетовый': '#8B008B',
-        'медный, никель': '#FFB380',
-        'фуксия': '#FF00FF',
-        'красный': '#e93f3f',
-        'синий, розовый': '#FF00FF',
-        'никель/медь': '#FFB380',
-        'оранжевый топаз': '#FFA500',
-        'черный, никель': '#000000',
-        'серый, фуксия': '#808080',
-        'фуксия, серый': '#FF00FF',
-        'серый, красный #808080,': '#FF0000',
-        'синий': '#0000FF',
-        'черный, медь #000000,': '#B87333',
-        'графитовый стальной': '#43464B',
-        'серебристый стальной': '#C0C0C0',
-        'золото стальной': '#FFD700',
-        'Черный/Серый': '#000000',
-        'Синий/Серый': '#4B0082',
-        'Желтый/бежевый': '#FFD700',
-        'Звездный свет': '#FFD700',
-        'Оранжевый': '#FFA500',
-        'Полночный океан': '#003366',
-        'фиолетовый': '#9b6bc3',
-        'графитовыйовый': '#4B4B4B',
-        'небесно-голубой': '#87CEFA',
-        'альпийский зеленый': '#00A693',
-        'космический черный': '#414141',
-        'темно-фиолетовый': '#7e6591',
-        'темно-красный': '#8B0000',
-        'мятный': '#00FFB6',
-        'персиковый': '#FFDAB9',
-        'лайм': '#00FF00',
-        'лавандовый': '#E6E6FA',
-        'графитовый': '#2F4F4F',
-        'оранжевый': '#FFA500',
-        'черный фантом': '#000000',
-        'бургунди': '#800020',
-        'бежевый': '#F5F5DC',
-        'серо-зеленый': '#8FBC8F',
-        'бронзовый': '#CD7F32',
-        'серый графитовый': '#808080',
-        'синий океан': '#0000FF',
-        'синие звезды': '#0000FF',
-        'камуфляж': '#4B5320',
-        'голубое небо': '#87CEEB',
-        'бирюзовый': '#40E0D0',
-        'песочный': '#F4A460',
-        'коричневый': '#964B00',
-        'черный/золотой': '#000000',
-        'кремовый': '#FDF5E6',
-        'черный, латунный': '#000000',
-        'латунь': '#B87333',
-        'серый опал': '#808080',
-        'капучино': '#6F4E37',
-        'розовое золото': '#FAE0D8',
-      },
       tab: 'description',
-      brand: '',
-      device: '',
-      model: '',
-      inUse: '',
       name: '',
       phone: '',
       rules: {
@@ -731,8 +622,8 @@ export default {
 
     await this.getProduct(productLink);
     // await this.getSameParentProducts();
-    await this.getAccessories();
-    await this.getServices();
+    // await this.getAccessories();
+    // await this.getServices();
 
     Swiper.use([Navigation, Autoplay]);
 
@@ -1014,9 +905,9 @@ export default {
 
       this.loading = false;
     },
-    openImage (image) {
-      if (image?.url) {
-        this.imageDialogImage = image;
+    openImage (url) {
+      if (url) {
+        this.imageDialogUrl = url;
 
         this.imageDialog = true;
       }
@@ -1041,7 +932,7 @@ export default {
         `
       };
 
-      const response = await this.$axios({
+      await this.$axios({
         method: 'POST',
         data: JSON.stringify(graphqlQuery)
       });
@@ -1060,11 +951,9 @@ export default {
               description
               price
               bonus
-              isActive
               vendorCode
-              balance
-              colorName
-              colorCode
+              rating
+              ratings
               image {
                 image {
                   filesize
@@ -1074,10 +963,15 @@ export default {
                   url
                 }
               }
-              photo_1
-              photo_2
-              photo_3
-              photo_4
+              images {
+                image {
+                  filesize
+                  width
+                  height
+                  extension
+                  url
+                }
+              }
               specifications
               properties
               relatedProducts {
@@ -1087,21 +981,18 @@ export default {
                 caption
                 price
                 bonus
-                isActive
-                balance
-                color
-                colors
-                colorName
-                colorCode
+                vendorCode
+                rating
+                ratings
                 image {
-                image {
-                  filesize
-                  width
-                  height
-                  extension
-                  url
+                  image {
+                    filesize
+                    width
+                    height
+                    extension
+                    url
+                  }
                 }
-              }
               }
               category {
                 id
@@ -1127,110 +1018,71 @@ export default {
         this.product = response.data.data.product;
         this.activePhoto = this.product.image?.image?.url;
         this.images.push(this.product.image?.image?.url);
-        if (this.product.photo_1) this.images.push(this.product.photo_1);
-        if (this.product.photo_2) this.images.push(this.product.photo_2);
-        if (this.product.photo_3) this.images.push(this.product.photo_3);
-        if (this.product.photo_4) this.images.push(this.product.photo_4);
-      }
 
-      const color = {};
-
-      color.colorName = this.product.colorName;
-      color.colorCode = this.product.colorCode;
-      color.color = this.product.color;
-      color.id = this.product.id;
-      color.link = this.product.link;
-      color.active = true;
-
-      this.device = this.product.title;
-
-      this.colors.push(color);
-
-      if (this.product?.properties) {
-        const itemProps = this.product.properties.replaceAll(`'"`, `&Prime;"`).replaceAll(`''`, `&Prime;"`).replaceAll(`''"`, `&Prime;"`).replaceAll(`"'`, `'`).replaceAll(`'`, `"`);
-
-        let itemPropsObj = {};
-
-        try {
-          itemPropsObj = JSON.parse(itemProps);
-        } catch (error) {
-          console.log(error);
-        }
-
-        const memoryUnits = itemPropsObj['Хранение данных'];
-        
-        if (memoryUnits) {
-          const memoryAmount = memoryUnits['Встроенная'];
-
-          if (memoryAmount) {
-            this.memoryAmounts.push({
-              id: this.product.id,
-              link: this.product.link,
-              active: true,
-              memoryText: memoryAmount.toUpperCase(),
-              memory: parseInt(memoryAmount)
-            });
+        if (this.product?.images?.length) {
+          for (const image of this.product.images) {
+            this.images.push(image?.image?.url);
           }
         }
       }
       
       this.loading = false;
     },
-    validate () {
-      this.$refs.form.validate();
+    // validate () {
+    //   this.$refs.form.validate();
 
-      if (this.valid) {
-        this.sendForm();
-      }
-    },
-    async sendForm() {
-      const graphqlQuery = {
-        query: `
-          mutation {
-            createTradeRequest (
-              data: {
-                brand: "${this.brand}",
-                model: "${this.model}",
-                name: "${this.name}",
-                phone: "${this.phone}",
-                used: "${this.inUse}",
-                product: {
-                  connect: {
-                    id: "${this.product?.id}"
-                  }
-                }
-              }
-            ) {
-              id
-            }
-          }
-        `
-      };
+    //   if (this.valid) {
+    //     this.sendForm();
+    //   }
+    // },
+    // async sendForm() {
+    //   const graphqlQuery = {
+    //     query: `
+    //       mutation {
+    //         createTradeRequest (
+    //           data: {
+    //             brand: "${this.brand}",
+    //             model: "${this.model}",
+    //             name: "${this.name}",
+    //             phone: "${this.phone}",
+    //             used: "${this.inUse}",
+    //             product: {
+    //               connect: {
+    //                 id: "${this.product?.id}"
+    //               }
+    //             }
+    //           }
+    //         ) {
+    //           id
+    //         }
+    //       }
+    //     `
+    //   };
 
-      const response = await this.$axios({
-        method: 'POST',
-        data: JSON.stringify(graphqlQuery)
-      });
+    //   const response = await this.$axios({
+    //     method: 'POST',
+    //     data: JSON.stringify(graphqlQuery)
+    //   });
 
-      if (response?.data?.data?.createTradeRequest?.id) {
-        this.bottomSheet = true;
+    //   if (response?.data?.data?.createTradeRequest?.id) {
+    //     this.bottomSheet = true;
 
-        this.brand = '';
-        this.model = '';
-        this.name = '';
-        this.phone = '';
-        this.inUse = '';
-        this.device = '';
+    //     this.brand = '';
+    //     this.model = '';
+    //     this.name = '';
+    //     this.phone = '';
+    //     this.inUse = '';
+    //     this.device = '';
 
-        this.$refs.form.resetValidation();
+    //     this.$refs.form.resetValidation();
 
-        this.bottomForm = false;
+    //     this.bottomForm = false;
 
-        setTimeout(() => {
-          this.bottomSheet = false;
-        }, 5000);
-      }
-    },
+    //     setTimeout(() => {
+    //       this.bottomSheet = false;
+    //     }, 5000);
+    //   }
+    // },
   }
 }
 </script>
@@ -1296,7 +1148,7 @@ export default {
   padding-left: 2px;
 }
 
-.v-application .product-container button.btn-fav .icon.active svg {
+.v-application .product-page button.btn-fav .icon.active svg {
   color: rgb(228, 59, 59);
 }
 
@@ -1418,12 +1270,6 @@ export default {
 </style>
 
 <style scoped>
-.product-container {
-  display: flex;
-  flex-direction: row;
-  gap: 50px;
-}
-
 .product-header-actions {
   display: flex;
   justify-content: flex-start;
@@ -1456,6 +1302,21 @@ export default {
 
 .product-bonus {
   margin-bottom: 15px;
+}
+
+.product-rating {
+  display: flex;
+  align-items: center;
+  margin-bottom: 25px;
+}
+.product-rating .v-icon {
+  font-size: 16px;
+}
+.ratings-amount {
+  margin-top: 4px;
+  margin-left: 8px;
+  font-size: 13px;
+  padding-bottom: 1px;
 }
 
 .product-bonus .bonus {
@@ -1652,11 +1513,6 @@ h2.page-heading {
 }
 
 @media (max-width: 800px) {
-  .product-container {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-  }
   .slider.slider-product {
     position: relative;
     display: flex;

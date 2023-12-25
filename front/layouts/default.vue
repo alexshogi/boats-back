@@ -559,56 +559,59 @@
     <v-footer class="site-footer">
       <v-container class="d-flex flex-column">
         <div class="site-footer-content">
-          <div class="col pa-0 w-300">
-            <NuxtLink
-              to="/"
-              class="text-decoration-none"
-            >
-              <div class="site-logo mb-8">
-                <img
-                  src="../static/images/logo-white.png"
-                  alt="Тактика"
-                  width="201"
-                  height="43"
-                >
-              </div>
-            </NuxtLink>
-            <p class="text-small-thick mb-5">Чтобы быть в курсе всех акций и скидок, подпишитесь на нашу рассылку</p>
-            <div class="form">
-              <v-form
-                ref="form"
+          <div class="col pa-0 w-300 d-flex flex-column justify-space-between">
+            <div>
+              <NuxtLink
+                to="/"
+                class="text-decoration-none"
               >
-                <div class="form-row align-start" style="gap: 5px;">
-                  <div class="form-row-content">
-                    <v-text-field
-                      v-model="email"
-                      dense
-                      placeholder="Email"
-                      outlined
-                      hide-details
-                    />
-                  </div>
-                  <div>
+                <div class="site-logo mb-8">
+                  <img
+                    src="../static/images/logo-white.png"
+                    alt="Тактика"
+                    width="201"
+                    height="43"
+                  >
+                </div>
+              </NuxtLink>
+              <p class="text-small-thick mb-5">Чтобы быть в курсе всех акций и скидок, подпишитесь на нашу рассылку</p>
+              <div class="form">
+                <v-form
+                  ref="form"
+                >
+                  <div class="form-row align-start" style="gap: 5px;">
                     <div class="form-row-content">
-                      <v-btn
-                        color="primary"
-                        class="btn small btn-primary btn-header-phone px-7 mb-1"
-                        depressed
-                        :disabled="!email"
-                      >
-                        Подписаться
-                      </v-btn>
-                      <p class="additional-text">
-                        Нажимая кнопку, вы&nbsp;соглашаетесь
-                        <br>
-                        с&nbsp;
-                        <NuxtLink to="/privacy-policy">Политикой конфиденциальности</NuxtLink>
-                      </p>
+                      <v-text-field
+                        v-model="email"
+                        dense
+                        placeholder="Email"
+                        outlined
+                        hide-details
+                      />
+                    </div>
+                    <div>
+                      <div class="form-row-content">
+                        <v-btn
+                          color="primary"
+                          class="btn small btn-primary btn-header-phone px-7 mb-1"
+                          depressed
+                          :disabled="!email"
+                        >
+                          Подписаться
+                        </v-btn>
+                        <p class="additional-text">
+                          Нажимая кнопку, вы&nbsp;соглашаетесь
+                          <br>
+                          с&nbsp;
+                          <NuxtLink to="/privacy-policy">Политикой конфиденциальности</NuxtLink>
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </v-form>
+                </v-form>
+              </div>
             </div>
+            
             <div class="socials-block">
               <h4 class="font-weight-regular">Тактика в соцсетях</h4>
               <div class="socials-icons">

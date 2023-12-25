@@ -39,25 +39,26 @@ model User {
 }
 
 model Image {
-  id                  String     @id @default(uuid())
-  name                String     @default("")
-  altText             String     @default("")
-  image_filesize      Int?
-  image_extension     String?
-  image_width         Int?
-  image_height        Int?
-  image_id            String?
-  from_User_photo     User[]     @relation("User_photo")
-  from_Product_image  Product[]  @relation("Product_image")
-  from_Product_images Product[]  @relation("Product_images")
-  from_Service_image  Service[]  @relation("Service_image")
-  from_Category_image Category[] @relation("Category_image")
+  id                     String        @id @default(uuid())
+  name                   String        @default("")
+  altText                String        @default("")
+  image_filesize         Int?
+  image_extension        String?
+  image_width            Int?
+  image_height           Int?
+  image_id               String?
+  from_User_photo        User[]        @relation("User_photo")
+  from_Product_image     Product[]     @relation("Product_image")
+  from_Product_images    Product[]     @relation("Product_images")
+  from_Service_image     Service[]     @relation("Service_image")
+  from_Category_image    Category[]    @relation("Category_image")
+  from_SubCategory_image SubCategory[] @relation("SubCategory_image")
 }
 
 model Product {
   id                           String       @id @default(uuid())
   title                        String       @default("")
-  caption                      String       @default("")
+  caption                      String       @default("") @mysql.VarChar(1000)
   description                  String       @default("") @mysql.VarChar(2000)
   price                        Int?
   oldPrice                     Int?
@@ -68,9 +69,7 @@ model Product {
   vendorCode                   String       @default("")
   balance                      Int?
   isActive                     Boolean      @default(true)
-  isPopular                    Boolean      @default(false)
-  category                     Category?    @relation("Product_category", fields: [categoryId], references: [id])
-  categoryId                   String?      @map("category")
+  category                     Category[]   @relation("Product_category")
   subCategory                  SubCategory? @relation("Product_subCategory", fields: [subCategoryId], references: [id])
   subCategoryId                String?      @map("subCategory")
   tags                         Tag[]        @relation("Product_tags")
@@ -80,21 +79,23 @@ model Product {
   material                     String       @default("")
   type                         String       @default("")
   handlingType                 String       @default("")
-  sideHeight                   Int?
-  transomHeight                Int?
-  overallLength                Int?
-  overallWidth                 Int?
-  weight                       Int?
-  loadCapacity                 Int?
+  sideHeight                   Float?
+  transomHeight                Float?
+  overallLength                Float?
+  overallWidth                 Float?
+  weight                       Float?
+  loadCapacity                 Float?
   permissibleMotorPower        String       @default("")
-  deadriseAmidships            Int?
-  deadriseTransom              Int?
+  deadriseAmidships            Float?
+  deadriseTransom              Float?
   passengers                   Int?
-  beadThickness                Int?
-  bottomThickness              Int?
+  beadThickness                Float?
+  bottomThickness              Float?
   relatedProducts              Product[]    @relation("Product_relatedProducts")
   extras                       Product[]    @relation("Product_extras")
   services                     Service[]    @relation("Product_services")
+  rating                       Float?
+  ratings                      Int?
   specifications               String       @default("") @mysql.VarChar(2000)
   properties                   String       @default("") @mysql.VarChar(2000)
   seoTitle                     String       @default("")
@@ -109,7 +110,6 @@ model Product {
   from_Tag_products            Tag[]        @relation("Tag_products")
 
   @@index([imageId])
-  @@index([categoryId])
   @@index([subCategoryId])
 }
 
@@ -117,7 +117,7 @@ model Service {
   id                    String    @id @default(uuid())
   title                 String    @default("")
   code                  String    @default("")
-  caption               String    @default("")
+  caption               String    @default("") @mysql.VarChar(1000)
   description           String    @default("") @mysql.VarChar(2000)
   image                 Image?    @relation("Service_image", fields: [imageId], references: [id])
   imageId               String?   @map("image")
@@ -141,6 +141,7 @@ model Category {
   id                      String        @id @default(uuid())
   code                    String        @default("")
   title                   String        @default("")
+  caption                 String        @default("") @mysql.VarChar(1000)
   image                   Image?        @relation("Category_image", fields: [imageId], references: [id])
   imageId                 String?       @map("image")
   children                SubCategory[] @relation("Category_children")
@@ -161,6 +162,9 @@ model SubCategory {
   id                       String     @id @default(uuid())
   code                     String     @default("")
   title                    String     @default("")
+  caption                  String     @default("") @mysql.VarChar(1000)
+  image                    Image?     @relation("SubCategory_image", fields: [imageId], references: [id])
+  imageId                  String?    @map("image")
   parent                   Category?  @relation("SubCategory_parent", fields: [parentId], references: [id])
   parentId                 String?    @map("parent")
   isActive                 Boolean    @default(true)
@@ -172,6 +176,7 @@ model SubCategory {
   from_Product_subCategory Product[]  @relation("Product_subCategory")
   from_Category_children   Category[] @relation("Category_children")
 
+  @@index([imageId])
   @@index([parentId])
 }
 

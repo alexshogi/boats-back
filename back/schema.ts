@@ -4,7 +4,7 @@ import { allowAll } from '@keystone-6/core/access';
 import {
   text,
   integer,
-  decimal,
+  float,
   relationship,
   password,
   timestamp,
@@ -57,7 +57,10 @@ export const lists: Lists = {
     access: allowAll,
     fields: {
       title: text({ defaultValue: '' }),
-      caption: text({ defaultValue: '' }),
+      caption: text({
+        db: { nativeType: 'VarChar(1000)' },
+        ui: { displayMode: 'textarea' },
+      }),
       description: text({
         db: { nativeType: 'VarChar(2000)' },
         ui: { displayMode: 'textarea' },
@@ -70,8 +73,7 @@ export const lists: Lists = {
       vendorCode: text(),
       balance: integer({ validation: { min: 0 } }),
       isActive: checkbox({ defaultValue: true }),
-      isPopular: checkbox({ defaultValue: false }),
-      category: relationship({ ref: 'Category' }),
+      category: relationship({ ref: 'Category', many: true }),
       subCategory: relationship({ ref: 'SubCategory' }),
       tags: relationship({ ref: 'Tag', many: true }),
       colorName: text({ defaultValue: '' }),
@@ -83,21 +85,23 @@ export const lists: Lists = {
       material: text(),
       type: text(),
       handlingType: text(),
-      sideHeight: integer({ validation: { min: 0 } }), // Высота борта на миделе
-      transomHeight: integer({ validation: { min: 0 } }), // Высота транца
-      overallLength: integer({ validation: { min: 0 } }),
-      overallWidth: integer({ validation: { min: 0 } }),
-      weight: integer({ validation: { min: 0 } }),
-      loadCapacity: integer({ validation: { min: 0 } }),
+      sideHeight: float({ validation: { min: 0 } }), // Высота борта на миделе
+      transomHeight: float({ validation: { min: 0 } }), // Высота транца
+      overallLength: float({ validation: { min: 0 } }),
+      overallWidth: float({ validation: { min: 0 } }),
+      weight: float({ validation: { min: 0 } }),
+      loadCapacity: float({ validation: { min: 0 } }),
       permissibleMotorPower: text(),
-      deadriseAmidships: integer({ validation: { min: 0 } }), // Килеватость на миделе
-      deadriseTransom: integer({ validation: { min: 0 } }), // Килеватость на транце
+      deadriseAmidships: float({ validation: { min: 0 } }), // Килеватость на миделе
+      deadriseTransom: float({ validation: { min: 0 } }), // Килеватость на транце
       passengers: integer({ validation: { min: 0 } }),
-      beadThickness: integer({ validation: { min: 0 } }), // Толщина борта
-      bottomThickness: integer({ validation: { min: 0 } }), // Толщина днища
+      beadThickness: float({ validation: { min: 0 } }), // Толщина борта
+      bottomThickness: float({ validation: { min: 0 } }), // Толщина днища
       relatedProducts: relationship({ ref: 'Product', many: true }),
       extras: relationship({ ref: 'Product', many: true }),
       services: relationship({ ref: 'Service', many: true }),
+      rating: float({ validation: { min: 0 } }),
+      ratings: integer({ validation: { min: 0 } }),
       specifications: text({
         defaultValue: '',
         db: { nativeType: 'VarChar(2000)' },
@@ -127,7 +131,10 @@ export const lists: Lists = {
     fields: {
       title: text(),
       code: text(),
-      caption: text(),
+      caption: text({
+        db: { nativeType: 'VarChar(1000)' },
+        ui: { displayMode: 'textarea' },
+      }),
       description: text({
         db: { nativeType: 'VarChar(2000)' },
         ui: { displayMode: 'textarea' },
@@ -153,6 +160,10 @@ export const lists: Lists = {
     fields: {
       code: text(),
       title: text(),
+      caption: text({
+        db: { nativeType: 'VarChar(1000)' },
+        ui: { displayMode: 'textarea' },
+      }),
       image: relationship({ ref: 'Image' }),
       children: relationship({ ref: 'SubCategory', many: true }),
       isActive: checkbox({ defaultValue: true }),
@@ -176,6 +187,11 @@ export const lists: Lists = {
     fields: {
       code: text(),
       title: text(),
+      caption: text({
+        db: { nativeType: 'VarChar(1000)' },
+        ui: { displayMode: 'textarea' },
+      }),
+      image: relationship({ ref: 'Image' }),
       parent: relationship({ ref: 'Category' }),
       isActive: checkbox({ defaultValue: true }),
       seoTitle: text(),

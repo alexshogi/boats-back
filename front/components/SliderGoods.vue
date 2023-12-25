@@ -7,14 +7,9 @@
           :key="product.id"
           class="swiper-slide"
         >
-          <!-- <NuxtLink
-            :to="`/catalog/${product.link}`"
-            class="text-decoration-none"
-          > -->
-            <ProductCard
-              :product="product"
-            />
-          <!-- </NuxtLink> -->
+          <ProductCard
+            :product="product"
+          />
         </div>
       </div>
       <div class="swiper-pagination"></div>
@@ -49,7 +44,7 @@ export default {
       id: null,
     }
   }, 
-  mounted() {
+  mounted () {
     this.id = this._uid;
     Swiper.use([Autoplay]);
     new Swiper('.swiper-goods', {
@@ -85,6 +80,7 @@ export default {
   position: relative;
   display: flex;
   justify-content: center;
+  min-height: 470px;
 }
 .slider .swiper {
   width: 100%;
