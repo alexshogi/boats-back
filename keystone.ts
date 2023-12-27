@@ -17,11 +17,24 @@ import { withAuth, session } from './auth';
 // import storage to save images there
 // import type { StorageConfig } from '@keystone-6/core/types'
 
+// import mysql from "mysql2/promise";
+      
+// const client = await mysql.createConnection({
+//     host: 'psedge.global',
+//     port: parseInt(process.env.POLYSCALE_DB_PORT),
+//     user: process.env.POLYSCALE_DB_USERNAME,
+//     password: process.env.POLYSCALE_DB_PASSWORD,
+//     database: process.env.POLYSCALE_DB_DATABASE,
+//     ssl: {
+//         rejectUnauthorized: true,
+//     },
+// });
+
 export default withAuth(
   config({
     db: {
       provider: 'mysql',
-      url: 'mysql://root:hello123@mysql:3306/boats', // prod
+      url: `mysql://${process.env.POLYSCALE_DB_USERNAME}:${process.env.POLYSCALE_DB_PASSWORD}@psedge.global:${parseInt(process.env.POLYSCALE_DB_PORT)}/${process.env.POLYSCALE_DB_DATABASE}`, // prod
       // url: 'mysql://root:defender2@localhost:3306/platinum', // dev
       onConnect: async (context: any) => {
         console.log('-> DB connected', context)
