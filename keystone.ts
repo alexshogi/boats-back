@@ -30,11 +30,13 @@ import { withAuth, session } from './auth';
 //     },
 // });
 
+console.log('haha', `${process.env.POLYSCALE_DB_CONNECTION_URI}`);
+
 export default withAuth(
   config({
     db: {
       provider: 'mysql',
-      url: `mysql://${process.env.POLYSCALE_DB_USERNAME}:${process.env.POLYSCALE_DB_PASSWORD}@psedge.global:${parseInt(process.env.POLYSCALE_DB_PORT)}/${process.env.POLYSCALE_DB_DATABASE}`, // prod
+      url: `${process.env.POLYSCALE_DB_CONNECTION_URI}`, // prod
       // url: 'mysql://root:defender2@localhost:3306/platinum', // dev
       onConnect: async (context: any) => {
         console.log('-> DB connected', context)
