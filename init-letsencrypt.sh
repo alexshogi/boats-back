@@ -5,7 +5,11 @@ if ! [ -x "$(command -v docker-compose)" ]; then
   exit 1
 fi
 
-domains=(iplatinum.ru www.iplatinum.ru)
+echo "### Starting nginx ..."
+docker-compose up --force-recreate -d nginx
+echo
+
+domains=(tacticboat.myecard.ru www.tacticboat.myecard.ru)
 rsa_key_size=4096
 data_path="./data/certbot"
 email="" # Adding a valid address is strongly recommended
@@ -38,9 +42,9 @@ docker-compose run --rm --entrypoint "\
 echo
 
 
-echo "### Starting nginx ..."
-docker-compose up --force-recreate -d nginx
-echo
+# echo "### Starting nginx ..."
+# docker-compose up --force-recreate -d nginx
+# echo
 
 echo "### Deleting dummy certificate for $domains ..."
 docker-compose run --rm --entrypoint "\

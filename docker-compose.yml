@@ -41,21 +41,23 @@ services:
     networks:
       - app-network
 
-  mysql:
-    image: mysql:8.2.0
-    stdin_open: true
-    tty: true
-    environment:
-      - MYSQL_DATABASE=platinum
-      - MYSQL_USER=iplat_111
+  mysql:                                      # This is the name of the service.
+    image: mysql:8.2.0                        # This specifies which Docker image to use for the service. The image is MySQL version 8.2.0.
+    stdin_open: true                          # Keeps the container's STDIN open even if not attached (similar to `docker run -i`).
+    tty: true                                 # Allocates a pseudo-TTY (similar to `docker run -t`), which allows you to attach to the container and interact with the MySQL command line.
+    environment:                              # Environment variables passed into the container.
+      - MYSQL_DATABASE=boats                  # Sets the default database to be created when the container starts up.
+      - MYSQL_USER=alistan1066
       - MYSQL_PASSWORD=alistan1066
-      - MYSQL_ROOT_PASSWORD=alistan1066
-    volumes:
-      - ./mysql:/var/lib/mysql
-    expose:
-      - "3306"
-    networks:
-      - app-network
+      - MYSQL_ROOT_PASSWORD=alistan1066          # Sets the root password for MySQL.
+    command:
+      mysqld --default-authentication-plugin=caching_sha2_password
+    volumes:                                  # Mounts paths from the host to the container.
+      - ./mysql:/var/lib/mysql                # Persists the data stored in the database by mapping the container’s /var/lib/mysql to the host’s ./mysql directory.
+    expose:                                   # Informs Docker that the container listens on the specified network ports at runtime.
+      - "3306"                                # This does not publish the port to the host machine, it's only accessible from linked services.
+    networks:                                 # Specifies the networks to which the container will connect.
+      - app-network                           # This is a custom network that you must define elsewhere in your docker-compose file.
 
 networks:
   app-network:
