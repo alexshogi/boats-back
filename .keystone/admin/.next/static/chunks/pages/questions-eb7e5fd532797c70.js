@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[971],{4276:function(n,u,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/questions",function(){return t(5823)}])},5823:function(n,u,t){"use strict";t.r(u);var _=t(2054);u.default=(0,_.d)({listKey:"Question"})}},function(n){n.O(0,[178,888,774,179],function(){return n(n.s=4276)}),_N_E=n.O()}]);

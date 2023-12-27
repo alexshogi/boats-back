@@ -1,28 +1,19 @@
 {
-  "name": "chinanear",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "tacticboat-back",
+  "version": "1.0.2",
+  "private": true,
   "scripts": {
-    "dev": "concurrently \"cd front && npm run dev\" \"cd back && yarn dev\"",
-    "build": "concurrently \"cd back && yarn build\" \"cd front && npm run build\"",
-    "start": "concurrently \"cd back && yarn start\" \"cd front && npm run start\"",
-    "install": "concurrently \"cd back && yarn install\" \"cd front && npm install\""
+    "dev": "keystone dev",
+    "start": "keystone start",
+    "build": "keystone build",
+    "postinstall": "keystone postinstall",
+    "fix": "keystone postinstall --fix"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alexshogi/chinanear-back.git"
-  },
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/alexshogi/chinanear-back/issues"
-  },
-  "homepage": "https://github.com/alexshogi/chinanear-back#readme",
   "dependencies": {
-    "concurrently": "^7.6.0"
-  },
-  "devDependencies": {
-    "@nuxt/devtools": "^1.0.6"
+    "@keystone-6/auth": "^7.0.2",
+    "@keystone-6/core": "^5.7.0",
+    "@keystone-6/fields-document": "^8.0.2",
+    "mailgun.js": "^8.0.6",
+    "typescript": "^4.9.4"
   }
 }

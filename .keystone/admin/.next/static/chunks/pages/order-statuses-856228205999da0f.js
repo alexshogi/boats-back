@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[183],{9198:function(n,t,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/order-statuses",function(){return u(1798)}])},1798:function(n,t,u){"use strict";u.r(t);var e=u(2054);t.default=(0,e.d)({listKey:"OrderStatus"})}},function(n){n.O(0,[178,888,774,179],function(){return n(n.s=9198)}),_N_E=n.O()}]);

@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[609],{7487:function(n,t,u){(window.__NEXT_P=window.__NEXT_P||[]).push(["/categories/[id]",function(){return u(1958)}])},1958:function(n,t,u){"use strict";u.r(t);var e=u(1086);t.default=(0,e.p)({listKey:"Category"})}},function(n){n.O(0,[86,888,774,179],function(){return n(n.s=7487)}),_N_E=n.O()}]);

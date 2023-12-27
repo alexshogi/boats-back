@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[892],{34:function(n,u,_){(window.__NEXT_P=window.__NEXT_P||[]).push(["/users",function(){return _(4807)}])},4807:function(n,u,_){"use strict";_.r(u);var e=_(2054);u.default=(0,e.d)({listKey:"User"})}},function(n){n.O(0,[178,888,774,179],function(){return n(n.s=34)}),_N_E=n.O()}]);

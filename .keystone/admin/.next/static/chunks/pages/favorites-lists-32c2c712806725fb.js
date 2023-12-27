@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[844],{3994:function(n,t,i){(window.__NEXT_P=window.__NEXT_P||[]).push(["/favorites-lists",function(){return i(5241)}])},5241:function(n,t,i){"use strict";i.r(t);var s=i(2054);t.default=(0,s.d)({listKey:"FavoritesList"})}},function(n){n.O(0,[178,888,774,179],function(){return n(n.s=3994)}),_N_E=n.O()}]);

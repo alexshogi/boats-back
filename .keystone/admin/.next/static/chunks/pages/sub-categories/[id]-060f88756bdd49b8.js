@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[43],{7384:function(n,u,t){(window.__NEXT_P=window.__NEXT_P||[]).push(["/sub-categories/[id]",function(){return t(3728)}])},3728:function(n,u,t){"use strict";t.r(u);var e=t(1086);u.default=(0,e.p)({listKey:"SubCategory"})}},function(n){n.O(0,[86,888,774,179],function(){return n(n.s=7384)}),_N_E=n.O()}]);
